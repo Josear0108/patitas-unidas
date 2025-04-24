@@ -1,0 +1,78 @@
+.adopta-hero {
+  padding: 4rem 0;
+  background-color: #fce4ec;
+}
+
+.search-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.search-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.search-input {
+  position: relative;
+}
+
+.search-input i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-light);
+}
+
+.search-input input {
+  padding-left: 2.5rem;
+}
+
+.advanced-filters {
+  margin-top: 1rem;
+}
+
+.animals-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.animal-card .badge.urgent {
+  left: 0.5rem;
+  right: auto;
+}
+
+.load-more {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .animals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .search-form .form-row {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .animals-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .animals-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

@@ -1,0 +1,6 @@
+@patitas_unidas.Server_HostAddress = http://localhost:5176
+
+GET {{patitas_unidas.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

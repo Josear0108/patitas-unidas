@@ -1,0 +1,120 @@
+.dona-hero {
+  padding: 4rem 0;
+  background-color: #fce4ec;
+}
+
+.tabs-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-text-light);
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.donation-card,
+.sponsorship-card {
+  padding: 1.5rem;
+}
+
+.card-header.centered {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-header.centered .card-icon {
+  margin-bottom: 1rem;
+}
+
+.donation-amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.donation-amount {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.donation-amount:hover {
+  background-color: #fce4ec;
+  border-color: var(--color-primary);
+}
+
+.payment-methods {
+  margin: 1.5rem 0;
+}
+
+.payment-methods h3,
+.sponsorship-frequency h3 {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+.payment-option input[type="radio"] {
+  width: auto;
+  margin-right: 1rem;
+}
+
+.icon-pse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+.animals-grid.two-columns {
+  margin: 2rem 0;
+}
+
+@media (max-width: 640px) {
+  .donation-amounts {
+    grid-template-columns: 1fr;
+  }
+}

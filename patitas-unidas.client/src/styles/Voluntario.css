@@ -1,0 +1,96 @@
+.voluntario-hero {
+  padding: 4rem 0;
+  background-color: #fce4ec;
+}
+
+.volunteer-options {
+  margin-bottom: 3rem;
+}
+
+.volunteer-card {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.volunteer-card .card-icon {
+  margin: 0 auto 1rem;
+}
+
+.volunteer-card:nth-child(1) .card-icon {
+  background-color: #fce4ec;
+  color: var(--color-primary);
+}
+
+.volunteer-card:nth-child(2) .card-icon {
+  background-color: #fff8e1;
+  color: var(--color-secondary);
+}
+
+.volunteer-card:nth-child(3) .card-icon {
+  background-color: #e8f5e9;
+  color: var(--color-success);
+}
+
+.volunteer-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.volunteer-form-container .card {
+  padding: 2rem;
+}
+
+.volunteer-form-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-option,
+.radio-option {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-option input[type="checkbox"],
+.radio-option input[type="radio"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.radio-options {
+  margin-top: 0.5rem;
+}
+
+.checkbox-single {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-single input {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .checkbox-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
