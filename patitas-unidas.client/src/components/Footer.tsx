@@ -69,8 +69,8 @@ export default function Footer() {
               </li>
               <li>
                 <span>Instagram:</span>
-                <a href="https://instagram.com/patitasunidas.co" target="_blank" rel="noopener noreferrer">
-                  @patitasunidas.co
+                <a href="https://instagram.com/patitasunidas_co" target="_blank" rel="noopener noreferrer">
+                  @patitasunidas_co
                 </a>
               </li>
             </ul>
