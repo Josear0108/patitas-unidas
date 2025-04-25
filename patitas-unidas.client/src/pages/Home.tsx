@@ -272,7 +272,7 @@ export default function Home() {
                   <input type="text" placeholder="Asunto" required />
                 </div>
                 <div className="form-group">
-                  <textarea placeholder="Tu mensaje" rows="4" required></textarea>
+                  <textarea placeholder="Tu mensaje" rows={4} required></textarea>
                 </div>
                 <button type="submit" className="button primary full">
                   Enviar mensaje
