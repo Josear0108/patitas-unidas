@@ -20,7 +20,7 @@ const ANIMALES: Animal[] = [
         tag: "Juguetón",
         age: "Adulto",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-        image: "/patitas-unidas/src/assets/patita_10.jpg",
+        image: "../src/assets/patita_10.jpg",
       },
       {
         id: 2,
@@ -40,7 +40,7 @@ const ANIMALES: Animal[] = [
         tag: "Tranquilo",
         age: "Cachorro",
         description: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
-        image: "/patitas-unidas/src/assets/patita_3.jpg",
+        image: "../src/assets/patita_3.jpg",
       },
       {
         id: 4,
