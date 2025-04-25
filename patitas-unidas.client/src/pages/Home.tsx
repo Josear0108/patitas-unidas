@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import "/src/styles/home.css"
+import "../styles/home.css"
 
 export default function Home() {
     const animals = [
