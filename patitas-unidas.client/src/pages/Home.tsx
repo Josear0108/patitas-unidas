@@ -2,42 +2,20 @@ import { Link } from "react-router-dom"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import "../styles/Home.css"
+import { useEffect, useState } from "react";
+import { animalService } from "../services/animalService";
+import { Animal } from "../types/animal";
 
 export default function Home() {
-    const animals = [
-      {
-        id: 1,
-        nombre: "Maximiliano",
-        tipo: "Perro",
-        edad: "Adulto",
-        descripcion: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
-        imagen: "/src/assets/patita_1.jpg",
-      },
-      {
-        id: 2,
-        nombre: "Francheski",
-        tipo: "Gato",
-        edad: "Cachorro",
-        descripcion: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-        imagen: "/src/assets/patita_6.jpg",
-      },
-      {
-        id: 3,
-        nombre: "Drax",
-        tipo: "Perro",
-        edad: "Cachorro",
-        descripcion: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
-        imagen: "/src/assets/patita_3.jpg",
-      },
-      {
-        id: 4,
-        nombre: "Antonia",
-        tipo: "Gato",
-        edad: "Adulto",
-        descripcion: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-        imagen: "/src/assets/patita_10.jpg",
-      },
-    ];
+  const [animals, setAnimals] = useState<Animal[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+      animalService.getAnimales().then((data) => {
+          setAnimals(data.slice(0, 4)); // Solo los primeros 4 animales destacados
+          setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="page-container">
@@ -65,7 +43,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hero-image">
-              <img src="../../src/assets/patita_1.jpg?height=500&width=500" alt="Perro y gato felices" />
+              <img src="/patitas-unidas/src/assets/patita_3.jpg?height=500&width=500" alt="Perro y gato felices" />
             </div>
           </div>
         </section>
@@ -171,26 +149,28 @@ export default function Home() {
             </div>
 
             <div className="card-grid four-columns">
-              {animals.map((i) => (
-                <div className="card animal-card" key={i.id}>
-                  <div className="card-image">
-                    <img src={`${i.imagen}??height=200&width=300`} alt={`Animal ${i}`} />
-                    <span className="badge">{i.tipo}</span>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-header">
-                      <h3>{i.nombre}</h3>
-                      <span className="tag">{i.edad}</span>
-                    </div>
-                    <p>
-                      {i.descripcion}
-                    </p>
-                    <Link to={`/adopta/${i.id}`} className="button primary full">
-                      Conocer más
-                    </Link>
-                  </div>
-                </div>
-              ))}
+            {loading ? (
+                                <p>Cargando animales...</p>
+                            ) : (
+                                animals.map((i) => (
+                                    <div className="card animal-card" key={i.id}>
+                                        <div className="card-image">
+                                            <img src={`${i.image}?height=200&width=300`} alt={`Animal ${i.name}`} />
+                                            <span className="badge">{i.type}</span>
+                                        </div>
+                                        <div className="card-content">
+                                            <div className="card-header">
+                                                <h3>{i.name}</h3>
+                                                <span className="tag">{i.age}</span>
+                                            </div>
+                                            <p>{i.description}</p>
+                                            <Link to={`/adopta/${i.id}`} className="button primary full">
+                                                Conocer más
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
             </div>
           </div>
         </section>

@@ -8,7 +8,7 @@ import NotFound from "../src/pages/NotFound"
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/patitas-unidas" element={<Home />} />
       <Route path="/adopta" element={<Adopta />} />
       <Route path="/dona" element={<Dona />} />
       <Route path="/voluntario" element={<Voluntario />} />

@@ -35,7 +35,7 @@ export default function Header() {
           <nav className={`main-nav ${menuOpen ? "open" : ""}`}>
             <ul className="nav-links">
               <li>
-                <Link to="/" className={isActive("/")} onClick={closeMenu}>
+                <Link to="/patitas-unidas" className={isActive("/")} onClick={closeMenu}>
                   Inicio
                 </Link>
               </li>
