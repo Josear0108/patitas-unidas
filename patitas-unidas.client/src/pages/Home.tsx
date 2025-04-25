@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import "../styles/Home.css"
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { animalService } from "../services/animalService";
 import { Animal } from "../types/animal";
 
@@ -12,10 +12,16 @@ export default function Home() {
 
   useEffect(() => {
       animalService.getAnimales().then((data) => {
-          setAnimals(data.slice(0, 4)); // Solo los primeros 4 animales destacados
+          setAnimals(data); // Solo los primeros 4 animales destacados
           setLoading(false);
       });
   }, []);
+
+  const randomImage = useMemo(() => {
+    if (animals.length === 0) return null;
+    const index = Math.floor(Math.random() * animals.length);
+    return animals[index].image;
+  }, [animals]);
 
   return (
     <div className="page-container">
@@ -43,7 +49,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hero-image">
-              <img src="/patitas-unidas/assets/tyson.jpg?height=500&width=500" alt="Perro y gato felices" />
+              <img src={`${randomImage}?height=500&width=500`} alt="Perro y gato felices" />
             </div>
           </div>
         </section>
@@ -152,7 +158,7 @@ export default function Home() {
             {loading ? (
                                 <p>Cargando animales...</p>
                             ) : (
-                                animals.map((i) => (
+                                animals.slice(0,4).map((i) => (
                                     <div className="card animal-card" key={i.id}>
                                         <div className="card-image">
                                             <img src={`${i.image}?height=200&width=300`} alt={`Animal ${i.name}`} />
