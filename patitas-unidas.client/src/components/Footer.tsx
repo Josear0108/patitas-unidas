@@ -14,7 +14,7 @@ export default function Footer() {
             <p>Tecnología para cambiarle la vida a los animales callejeros.</p>
             <div className="social-links">
               <a
-                href="https://instagram.com/patitasunidas.co"
+                href="https://instagram.com/patitasunidas_co"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
