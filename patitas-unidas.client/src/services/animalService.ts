@@ -100,6 +100,16 @@ const ANIMALES: Animal[] = [
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_6.jpg",
       },
+      {
+        id: 6,
+        name: "Tyson",
+        type: "Perro",
+        state: "No adopción",
+        tag: "Lindo",
+        age: "Adulto",
+        description: "Perro lindo y cariñoso, le encanta correr y jugar con pelotas.",
+        image: "/patitas-unidas/assets/tyson.jpg",
+      },
 ];
 
 const ANIMALES_APADRINAMIENTO: Animal[] = [

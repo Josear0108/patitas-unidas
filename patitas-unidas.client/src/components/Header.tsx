@@ -23,7 +23,7 @@ export default function Header() {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <Link to="/" className="logo" onClick={closeMenu}>
+          <Link to="/patitas-unidas" className="logo" onClick={closeMenu}>
             <i className="icon-paw"></i>
             <span>Patitas Unidas</span>
           </Link>

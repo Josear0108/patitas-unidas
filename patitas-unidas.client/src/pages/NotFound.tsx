@@ -10,7 +10,7 @@ export default function NotFound() {
         <p>
           Parece que esta página se ha perdido, igual que muchos de nuestros amigos peludos. ¡Ayúdanos a encontrarlos!
         </p>
-        <Link to="/" className="button primary">
+        <Link to="/patitas-unidas" className="button primary">
           Volver al inicio
         </Link>
       </div>

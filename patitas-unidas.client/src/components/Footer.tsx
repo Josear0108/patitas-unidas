@@ -28,7 +28,7 @@ export default function Footer() {
             <h3>Enlaces rápidos</h3>
             <ul className="footer-links">
               <li>
-                <Link to="/">Inicio</Link>
+                <Link to="/patitas-unidas">Inicio</Link>
               </li>
               <li>
                 <Link to="/adopta">Adopta</Link>
