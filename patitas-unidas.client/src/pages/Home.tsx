@@ -15,7 +15,7 @@ export default function Home() {
       },
       {
         id: 2,
-        nombre: "Francheski",
+        nombre: "Francheska",
         tipo: "Gato",
         edad: "Cachorro",
         descripcion: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
