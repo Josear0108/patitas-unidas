@@ -15,7 +15,7 @@ export default function Header() {
     setMenuOpen(false)
   }
 
-  const isActive = (path) => {
+  const isActive = (path: string) => {
     return location.pathname === path ? "active" : ""
   }
 

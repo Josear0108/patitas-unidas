@@ -112,7 +112,7 @@ export default function Voluntario() {
 
                   <div className="form-group">
                     <label htmlFor="mensaje">¿Por qué quieres ser voluntario?</label>
-                    <textarea id="mensaje" rows="4" required></textarea>
+                    <textarea id="mensaje" rows={4} required></textarea>
                   </div>
 
                   <div className="form-group checkbox-single">

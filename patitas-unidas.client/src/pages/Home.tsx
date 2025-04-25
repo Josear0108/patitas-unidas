@@ -185,7 +185,7 @@ export default function Home() {
                     <p>
                       {i.descripcion}
                     </p>
-                    <Link to={`/adopta/${i}`} className="button primary full">
+                    <Link to={`/adopta/${i.id}`} className="button primary full">
                       Conocer más
                     </Link>
                   </div>
