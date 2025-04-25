@@ -43,7 +43,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hero-image">
-              <img src="/patitas-unidas/src/assets/patita_3.jpg?height=500&width=500" alt="Perro y gato felices" />
+              <img src="/patitas-unidas/assets/patita_3.jpg?height=500&width=500" alt="Perro y gato felices" />
             </div>
           </div>
         </section>
