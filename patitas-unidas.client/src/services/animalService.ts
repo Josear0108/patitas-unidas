@@ -10,7 +10,7 @@ const ANIMALES: Animal[] = [
         tag: "Sociable",
         age: "Adulto",
         description: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
-        image: "/patitas-unidas/src/assets/patita_1.jpg",
+        image: "@/assets/patita_1.jpg",
       },
       {
         id: 10,
