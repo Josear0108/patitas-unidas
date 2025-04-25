@@ -1,8 +1,20 @@
+import { useEffect, useState } from "react";
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import "/src/styles/Voluntario.css"
+import { voluntarioService, OpcionVoluntariado } from "../services/voluntarioService";
 
 export default function Voluntario() {
+  const [opciones, setOpciones] = useState<OpcionVoluntariado[]>([]);
+  const [tiposAyuda, setTiposAyuda] = useState<string[]>([]);
+  const [disponibilidad, setDisponibilidad] = useState<{ id: string; label: string }[]>([]);
+
+  useEffect(() => {
+    voluntarioService.getOpcionesVoluntariado().then(setOpciones);
+    voluntarioService.getTiposAyuda().then(setTiposAyuda);
+    voluntarioService.getDisponibilidad().then(setDisponibilidad);
+  }, []);
+
   return (
     <div className="page-container">
       <Header />
@@ -20,35 +32,15 @@ export default function Voluntario() {
 
             <div className="volunteer-options">
               <div className="card-grid three-columns">
-                <div className="card volunteer-card">
-                  <div className="card-icon">
-                    <i className="icon-home"></i>
+                {opciones.map((op) => (
+                  <div className="card volunteer-card" key={op.titulo}>
+                    <div className="card-icon">
+                      <i className={op.icon}></i>
+                    </div>
+                    <h3>{op.titulo}</h3>
+                    <p>{op.descripcion}</p>
                   </div>
-                  <h3>Hogar de paso</h3>
-                  <p>
-                    Ofrece un espacio temporal en tu hogar para animales que esperan ser adoptados. Todos los gastos son
-                    cubiertos por la fundación.
-                  </p>
-                </div>
-
-                <div className="card volunteer-card">
-                  <div className="card-icon">
-                    <i className="icon-car"></i>
-                  </div>
-                  <h3>Transporte</h3>
-                  <p>Ayuda a transportar animales a citas veterinarias, eventos de adopción o a sus nuevos hogares.</p>
-                </div>
-
-                <div className="card volunteer-card">
-                  <div className="card-icon">
-                    <i className="icon-clock"></i>
-                  </div>
-                  <h3>Tiempo y habilidades</h3>
-                  <p>
-                    Comparte tus habilidades: fotografía, diseño, redes sociales, organización de eventos o atención
-                    directa a los animales.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -81,32 +73,24 @@ export default function Voluntario() {
                   <div className="form-group">
                     <label>¿Cómo te gustaría ayudar?</label>
                     <div className="checkbox-grid">
-                      {["Hogar de paso", "Transporte", "Eventos", "Redes sociales", "Fotografía", "Otro"].map(
-                        (option) => (
-                          <div className="checkbox-option" key={option}>
-                            <input type="checkbox" id={option.toLowerCase().replace(" ", "-")} />
-                            <label htmlFor={option.toLowerCase().replace(" ", "-")}>{option}</label>
-                          </div>
-                        ),
-                      )}
+                      {tiposAyuda.map((option) => (
+                        <div className="checkbox-option" key={option}>
+                          <input type="checkbox" id={option.toLowerCase().replace(/ /g, "-")} />
+                          <label htmlFor={option.toLowerCase().replace(/ /g, "-")}>{option}</label>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label>Disponibilidad</label>
                     <div className="radio-options">
-                      <div className="radio-option">
-                        <input type="radio" id="fines" name="disponibilidad" value="fines" defaultChecked />
-                        <label htmlFor="fines">Fines de semana</label>
-                      </div>
-                      <div className="radio-option">
-                        <input type="radio" id="dias" name="disponibilidad" value="dias" />
-                        <label htmlFor="dias">Días específicos entre semana</label>
-                      </div>
-                      <div className="radio-option">
-                        <input type="radio" id="flexible" name="disponibilidad" value="flexible" />
-                        <label htmlFor="flexible">Horario flexible</label>
-                      </div>
+                      {disponibilidad.map((d) => (
+                        <div className="radio-option" key={d.id}>
+                          <input type="radio" id={d.id} name="disponibilidad" value={d.id} defaultChecked={d.id === "fines"} />
+                          <label htmlFor={d.id}>{d.label}</label>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
