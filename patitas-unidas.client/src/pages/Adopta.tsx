@@ -13,7 +13,7 @@ export default function Adopta() {
       tag: "Sociable",
       age: "Adulto",
       description: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
-      image: "/src/assets/patita_1.jpg",
+      image: "/patitas-unidas/src/assets/patita_1.jpg",
     },
     {
       id: 10,
@@ -23,7 +23,7 @@ export default function Adopta() {
       tag: "Juguetón",
       age: "Adulto",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_10.jpg",
+      image: "/patitas-unidas/src/assets/patita_10.jpg",
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ export default function Adopta() {
       tag: "Juguetón",
       age: "Cachorro",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_2.jpg",
+      image: "/patitas-unidas/src/assets/patita_2.jpg",
     },
     {
       id: 3,
@@ -43,7 +43,7 @@ export default function Adopta() {
       tag: "Tranquilo",
       age: "Cachorro",
       description: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
-      image: "/src/assets/patita_3.jpg",
+      image: "/patitas-unidas/src/assets/patita_3.jpg",
     },
     {
       id: 4,
@@ -53,7 +53,7 @@ export default function Adopta() {
       tag: "Tranquilo",
       age: "Adulto",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_4.jpg",
+      image: "/patitas-unidas/src/assets/patita_4.jpg",
     },
     {
       id: 5,
@@ -63,7 +63,7 @@ export default function Adopta() {
       tag: "Independiente",
       age: "Adulto",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_5.jpg",
+      image: "/patitas-unidas/src/assets/patita_5.jpg",
     },
     {
       id: 7,
@@ -72,7 +72,7 @@ export default function Adopta() {
       tag: "Tranquilo",
       age: "Cachorro",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_7.jpg",
+      image: "/patitas-unidas/src/assets/patita_7.jpg",
     },
     {
       id: 8,
@@ -81,7 +81,7 @@ export default function Adopta() {
       tag: "Juguetón",
       age: "Adulto",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_8.jpg",
+      image: "/patitas-unidas/src/assets/patita_8.jpg",
     },
     {
       id: 9,
@@ -91,7 +91,7 @@ export default function Adopta() {
       tag: "Juguetón",
       age: "Adulto",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_9.jpg",
+      image: "/patitas-unidas/src/assets/patita_9.jpg",
     },
     {
       id: 6,
@@ -101,7 +101,7 @@ export default function Adopta() {
       tag: "Independiente",
       age: "Cachorro",
       description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
-      image: "/src/assets/patita_6.jpg",
+      image: "/patitas-unidas/src/assets/patita_6.jpg",
     }
   ];
 
