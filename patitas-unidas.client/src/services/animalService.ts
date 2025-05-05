@@ -11,6 +11,7 @@ const ANIMALES: Animal[] = [
         age: "Adulto",
         description: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
         image: "/patitas-unidas/assets/patita_1.jpg",
+        fundacionId: 1,
       },
       {
         id: 10,
@@ -21,6 +22,7 @@ const ANIMALES: Animal[] = [
         age: "Adulto",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_10.jpg",
+        fundacionId: 2,
       },
       {
         id: 2,
@@ -31,6 +33,7 @@ const ANIMALES: Animal[] = [
         age: "Cachorro",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_2.jpg",
+        fundacionId: 1,
       },
       {
         id: 3,
@@ -41,6 +44,7 @@ const ANIMALES: Animal[] = [
         age: "Cachorro",
         description: "Tranquila y mimosa, busca un hogar donde pueda recibir mucho amor.",
         image: "/patitas-unidas/assets/patita_3.jpg",
+        fundacionId: 3,
       },
       {
         id: 4,
@@ -51,6 +55,7 @@ const ANIMALES: Animal[] = [
         age: "Adulto",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_4.jpg",
+        fundacionId: 1,
       },
       {
         id: 5,
@@ -61,6 +66,7 @@ const ANIMALES: Animal[] = [
         age: "Adulto",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_5.jpg",
+        fundacionId: 2,
       },
       {
         id: 7,
@@ -70,6 +76,7 @@ const ANIMALES: Animal[] = [
         age: "Cachorro",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_7.jpg",
+        fundacionId: 3,
       },
       {
         id: 8,
@@ -79,6 +86,7 @@ const ANIMALES: Animal[] = [
         age: "Adulto",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_8.jpg",
+        fundacionId: 2,
       },
       {
         id: 9,
@@ -89,6 +97,7 @@ const ANIMALES: Animal[] = [
         age: "Adulto",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_9.jpg",
+        fundacionId: 1,
       },
       {
         id: 6,
@@ -99,6 +108,7 @@ const ANIMALES: Animal[] = [
         age: "Cachorro",
         description: "Juguetón y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/patita_6.jpg",
+        fundacionId: 3,
       },
       {
         id: 6,
@@ -109,6 +119,7 @@ const ANIMALES: Animal[] = [
         age: "Adulto",
         description: "Perro lindo y cariñoso, le encanta correr y jugar con pelotas.",
         image: "/patitas-unidas/assets/tyson.jpg",
+        fundacionId: 2,
       },
 ];
 
@@ -165,6 +176,11 @@ export const animalService = {
   getApadrinables: async (): Promise<Animal[]> => {
     return new Promise((resolve) => {
       setTimeout(() => resolve(ANIMALES_APADRINAMIENTO), 500);
+    });
+  },
+  getAnimalesPorFundacion: async (fundacionId: number): Promise<Animal[]> => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(ANIMALES.filter(a => a.fundacionId === fundacionId)), 500);
     });
   },
 }; 

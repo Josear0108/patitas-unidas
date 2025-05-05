@@ -7,4 +7,5 @@ export interface Animal {
     image: string;
     state?: string; 
     tag?: string; 
+    fundacionId?: number;
   } 

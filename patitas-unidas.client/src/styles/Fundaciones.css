@@ -1,7 +1,7 @@
 /* Estilos para la página de Fundaciones */
 
 .fundaciones-hero {
-  background: linear-gradient(90deg, #f7fafc 0%, #e3f0ff 100%);
+  background: linear-gradient(to bottom, #fce4ec, #ffffff);
   padding: 3rem 0 2rem 0;
   text-align: center;
 }
@@ -89,7 +89,7 @@
 }
 
 .fundaciones-contact {
-  background: #f7fafc;
+  background: linear-gradient(to bottom, #ffffff, #fce4ec);;
   padding: 2.5rem 0;
 }
 
@@ -137,6 +137,15 @@
   margin-top: 1rem;
 }
 
+.fundacion-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-right: 2rem;
+}
+
 @media (max-width: 900px) {
   .fundaciones-list .card-grid {
     grid-template-columns: 1fr 1fr;
@@ -150,4 +159,63 @@
   .fundaciones-contact .form-container {
     padding: 1rem;
   }
+  .fundacion-logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 1rem;
+  }
+}
+
+.fundacion-detalle-hero {
+  background: linear-gradient(to bottom, #fce4ec, #ffffff);
+  padding: 3rem 0 2rem 0;
+}
+
+.fundacion-detalle-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2rem 2.5rem;
+}
+
+.fundacion-detalle-header h1 {
+  font-size: 2.5rem;
+  color: #2d3a4a;
+  margin-bottom: 0.5rem;
+}
+
+.fundacion-detalle-header .tag {
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.fundacion-detalle-header p {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.fundacion-detalle-header .button {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .fundacion-detalle-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1rem;
+  }
+  .fundacion-logo {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.fundacion-animales-list {
+  margin: 2.5rem 0 2.5rem 0;
 } 

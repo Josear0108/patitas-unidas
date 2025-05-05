@@ -2,50 +2,20 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "/src/styles/Fundaciones.css"
 import { useEffect, useState } from "react";
-
-// Simulación de datos de fundaciones
-interface Fundacion {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  ciudad: string;
-  logo: string;
-  contacto: string;
-}
-
-const fundacionesMock: Fundacion[] = [
-  {
-    id: 1,
-    nombre: "Huellitas de Amor",
-    descripcion: "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
-    ciudad: "Bogotá",
-    logo: "/assets/patita_1.jpg",
-    contacto: "huellitas@correo.com"
-  },
-  {
-    id: 2,
-    nombre: "Patitas Felices",
-    descripcion: "Apoyamos campañas de esterilización y adopción responsable en Medellín.",
-    ciudad: "Medellín",
-    logo: "/assets/patita_2.jpg",
-    contacto: "felices@correo.com"
-  },
-  {
-    id: 3,
-    nombre: "Amigos Peludos",
-    descripcion: "Ofrecemos hogar de paso y atención veterinaria en Cali.",
-    ciudad: "Cali",
-    logo: "/assets/patita_3.jpg",
-    contacto: "peludos@correo.com"
-  }
-];
+import { Link } from "react-router-dom";
+import { fundacionService } from "../services/fundacionService";
+import { Fundacion } from "../types/fundacion";
 
 export default function Fundaciones() {
   const [fundaciones, setFundaciones] = useState<Fundacion[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Aquí se podría llamar a un servicio real en el futuro
-    setFundaciones(fundacionesMock);
+    setLoading(true);
+    fundacionService.getFundaciones().then((data) => {
+      setFundaciones(data);
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -68,19 +38,26 @@ export default function Fundaciones() {
         <section className="fundaciones-list">
           <div className="container">
             <div className="card-grid three-columns">
-              {fundaciones.map((f) => (
-                <div className="card fundacion-card" key={f.id}>
-                  <div className="card-image">
-                    <img src={f.logo} alt={`Logo de ${f.nombre}`} />
+              {loading ? (
+                <p>Cargando fundaciones...</p>
+              ) : fundaciones.length === 0 ? (
+                <p>No hay fundaciones registradas.</p>
+              ) : (
+                fundaciones.map((f) => (
+                  <div className="card fundacion-card" key={f.id}>
+                    <div className="card-image">
+                      <img src={f.logo} alt={`Logo de ${f.nombre}`} />
+                    </div>
+                    <div className="card-content">
+                      <h3>{f.nombre}</h3>
+                      <span className="tag">{f.ciudad}</span>
+                      <p>{f.descripcion}</p>
+                      <a href={`mailto:${f.contacto}`} className="button secondary full">Contactar</a>
+                      <Link to={`/fundaciones/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
+                    </div>
                   </div>
-                  <div className="card-content">
-                    <h3>{f.nombre}</h3>
-                    <span className="tag">{f.ciudad}</span>
-                    <p>{f.descripcion}</p>
-                    <a href={`mailto:${f.contacto}`} className="button secondary full">Contactar</a>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         </section>

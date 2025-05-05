@@ -54,6 +54,11 @@ export default function Header() {
                   Sé Voluntario
                 </Link>
               </li>
+              <li>
+                <Link to="/fundaciones" className={isActive("/fundaciones")} onClick={closeMenu}>
+                  Fundaciones
+                </Link>
+              </li>
             </ul>
             <div className="nav-buttons">
               <button className="button text">Iniciar Sesión</button>
