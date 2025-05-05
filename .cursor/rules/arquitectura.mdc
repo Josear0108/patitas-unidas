@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Cada vez que te pida crear, modificar o sugerir componentes, páginas, servicios, tipos o cualquier otro elemento en el proyecto, debes seguir estrictamente la arquitectura y convenciones definidas en el archivo ARQUITECTURA.md ubicado en la raíz de patitas-unidas.client.
