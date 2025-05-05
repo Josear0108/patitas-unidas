@@ -1,0 +1,118 @@
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import "/src/styles/Fundaciones.css"
+import { useEffect, useState } from "react";
+
+// Simulación de datos de fundaciones
+interface Fundacion {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  ciudad: string;
+  logo: string;
+  contacto: string;
+}
+
+const fundacionesMock: Fundacion[] = [
+  {
+    id: 1,
+    nombre: "Huellitas de Amor",
+    descripcion: "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
+    ciudad: "Bogotá",
+    logo: "/assets/patita_1.jpg",
+    contacto: "huellitas@correo.com"
+  },
+  {
+    id: 2,
+    nombre: "Patitas Felices",
+    descripcion: "Apoyamos campañas de esterilización y adopción responsable en Medellín.",
+    ciudad: "Medellín",
+    logo: "/assets/patita_2.jpg",
+    contacto: "felices@correo.com"
+  },
+  {
+    id: 3,
+    nombre: "Amigos Peludos",
+    descripcion: "Ofrecemos hogar de paso y atención veterinaria en Cali.",
+    ciudad: "Cali",
+    logo: "/assets/patita_3.jpg",
+    contacto: "peludos@correo.com"
+  }
+];
+
+export default function Fundaciones() {
+  const [fundaciones, setFundaciones] = useState<Fundacion[]>([]);
+
+  useEffect(() => {
+    // Aquí se podría llamar a un servicio real en el futuro
+    setFundaciones(fundacionesMock);
+  }, []);
+
+  return (
+    <div className="page-container">
+      <Header />
+      <main>
+        {/* Hero Section */}
+        <section className="fundaciones-hero">
+          <div className="container">
+            <div className="section-header">
+              <h1>Fundaciones aliadas</h1>
+              <p>
+                Conoce las fundaciones que trabajan día a día por el bienestar animal. Puedes contactarlas, apoyarlas o postular tu fundación para unirte a la red.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Listado de Fundaciones */}
+        <section className="fundaciones-list">
+          <div className="container">
+            <div className="card-grid three-columns">
+              {fundaciones.map((f) => (
+                <div className="card fundacion-card" key={f.id}>
+                  <div className="card-image">
+                    <img src={f.logo} alt={`Logo de ${f.nombre}`} />
+                  </div>
+                  <div className="card-content">
+                    <h3>{f.nombre}</h3>
+                    <span className="tag">{f.ciudad}</span>
+                    <p>{f.descripcion}</p>
+                    <a href={`mailto:${f.contacto}`} className="button secondary full">Contactar</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Formulario para nuevas fundaciones */}
+        <section className="fundaciones-contact">
+          <div className="container">
+            <div className="form-container">
+              <h2>¿Tu fundación quiere unirse?</h2>
+              <p>Completa el formulario y nos pondremos en contacto contigo.</p>
+              <form className="fundacion-form">
+                <div className="form-group">
+                  <input type="text" placeholder="Nombre de la fundación" required />
+                </div>
+                <div className="form-group">
+                  <input type="email" placeholder="Correo de contacto" required />
+                </div>
+                <div className="form-group">
+                  <input type="text" placeholder="Ciudad" required />
+                </div>
+                <div className="form-group">
+                  <textarea placeholder="Cuéntanos sobre tu labor" rows={4} required></textarea>
+                </div>
+                <button type="submit" className="button primary full">
+                  Enviar solicitud
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+} 

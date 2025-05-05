@@ -1,0 +1,153 @@
+/* Estilos para la página de Fundaciones */
+
+.fundaciones-hero {
+  background: linear-gradient(90deg, #f7fafc 0%, #e3f0ff 100%);
+  padding: 3rem 0 2rem 0;
+  text-align: center;
+}
+
+.fundaciones-hero .section-header h1 {
+  font-size: 2.5rem;
+  color: #2d3a4a;
+  margin-bottom: 0.5rem;
+}
+
+.fundaciones-hero .section-header p {
+  color: #4a5568;
+  font-size: 1.2rem;
+}
+
+.fundaciones-list {
+  padding: 2rem 0;
+}
+
+.fundaciones-list .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.fundacion-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+
+.fundacion-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.fundacion-card .card-image {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+}
+
+.fundacion-card .card-image img {
+  max-width: 100%;
+  max-height: 160px;
+  border-radius: 0.5rem;
+}
+
+.fundacion-card .card-content {
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.fundacion-card h3 {
+  margin: 0.5rem 0 0.2rem 0;
+  font-size: 1.3rem;
+  color: #2d3a4a;
+}
+
+.fundacion-card .tag {
+  display: inline-block;
+  background: #e3f0ff;
+  color: #2563eb;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.fundacion-card p {
+  color: #4a5568;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.fundacion-card .button {
+  margin-top: 0.5rem;
+}
+
+.fundaciones-contact {
+  background: #f7fafc;
+  padding: 2.5rem 0;
+}
+
+.fundaciones-contact .form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2rem;
+}
+
+.fundaciones-contact h2 {
+  color: #2d3a4a;
+  margin-bottom: 0.5rem;
+}
+
+.fundaciones-contact p {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+}
+
+.fundacion-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.fundacion-form input,
+.fundacion-form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border 0.2s;
+}
+
+.fundacion-form input:focus,
+.fundacion-form textarea:focus {
+  border: 1.5px solid #2563eb;
+  outline: none;
+}
+
+.fundacion-form button {
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .fundaciones-list .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .fundaciones-list .card-grid {
+    grid-template-columns: 1fr;
+  }
+  .fundaciones-contact .form-container {
+    padding: 1rem;
+  }
+} 
