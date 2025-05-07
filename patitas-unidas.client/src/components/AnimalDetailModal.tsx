@@ -11,27 +11,27 @@ interface AnimalDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   animalId: number;
-  fromUrl?: boolean
+  fromUrl?: boolean;
 }
 
 export default function AnimalDetailModal({
   isOpen,
   onClose,
   animalId,
-  fromUrl = false
+  fromUrl = false,
 }: AnimalDetailModalProps) {
   useLockBodyScroll(isOpen);
   const [animal, setAnimal] = useState<AnimalData | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const modalRef = useRef<HTMLDivElement>(null)
-  const navigate = useNavigate()
+  const modalRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isOpen && animalId && !fromUrl) {
-      navigate(`/adopta/${animalId}`, { replace: false })
+      navigate(`/adopta/${animalId}`, { replace: false });
     }
-  }, [isOpen, animalId, navigate, fromUrl])
+  }, [isOpen, animalId, navigate, fromUrl]);
 
   useEffect(() => {
     if (isOpen && animalId) {
@@ -47,20 +47,20 @@ export default function AnimalDetailModal({
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
-        handleClose()
+        handleClose();
       }
-    }
+    };
 
-    window.addEventListener("keydown", handleEscKey)
-    return () => window.removeEventListener("keydown", handleEscKey)
-  }, [isOpen])
+    window.addEventListener("keydown", handleEscKey);
+    return () => window.removeEventListener("keydown", handleEscKey);
+  }, [isOpen]);
 
   const handleClose = () => {
     if (!fromUrl) {
-      navigate("/adopta", { replace: true })
+      navigate("/adopta", { replace: true });
     }
-    onClose()
-  }
+    onClose();
+  };
 
   const nextImage = () => {
     if (animal && animal.images && animal.images.length > 0) {
@@ -80,9 +80,18 @@ export default function AnimalDetailModal({
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      handleClose()
+      handleClose();
     }
-  }
+  };
+
+  const handleCopyLink = async () => {
+    const url = window.location.origin + location.pathname;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      console.log("Error al copiar");
+    }
+  };
 
   useEffect(() => {
     if (isOpen && !loading && animal) {
@@ -195,7 +204,9 @@ export default function AnimalDetailModal({
                     </div>
                   </div>
                   <div className="animal-actions">
-                    <button className="action-button">🔗</button>
+                    <button className="action-button" onClick={handleCopyLink}>
+                      🔗
+                    </button>
                     <button className="action-button">❤️</button>
                   </div>
                 </div>
@@ -438,4 +449,3 @@ export default function AnimalDetailModal({
     </div>
   );
 }
-
