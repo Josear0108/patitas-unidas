@@ -5,16 +5,23 @@ import "../styles/Home.css"
 import { useEffect, useMemo, useState } from "react";
 import { animalService } from "../services/animalService";
 import { Animal } from "../types/animal";
+import { fundacionService } from "../services/fundacionService";
+import { Fundacion } from "../types/fundacion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Home() {
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fundaciones, setFundaciones] = useState<Fundacion[]>([]);
 
   useEffect(() => {
-      animalService.getAnimales().then((data) => {
-          setAnimals(data); // Solo los primeros 4 animales destacados
-          setLoading(false);
-      });
+    animalService.getAnimales().then((data) => {
+      setAnimals(data);
+      setLoading(false);
+    });
+    fundacionService.getFundaciones().then(setFundaciones);
   }, []);
 
   const randomImage = useMemo(() => {
@@ -153,31 +160,105 @@ export default function Home() {
                 Ver todos <i className="icon-arrow-right"></i>
               </Link>
             </div>
+            <Slider
+              dots={true}
+              infinite={animals.length > 4}
+              speed={500}
+              slidesToShow={4}
+              slidesToScroll={1}
+              arrows={true}
+              autoplay={true}
+              autoplaySpeed={2000}
+              responsive={[
+                {
+                  breakpoint: 900,
+                  settings: {
+                    slidesToShow: 1,
+                    arrows: true,
+                    dots: true,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                  }
+                }
+              ]}
+            >
+              {loading ? (
+                <div><p>Cargando animales...</p></div>
+              ) : (
+                animals.slice(0, 8).map((i) => (
+                  <div key={i.id}>
+                    <div className="card animal-card">
+                      <div className="card-image">
+                        <img src={`${i.image}?height=200&width=300`} alt={`Animal ${i.name}`} />
+                        <span className="badge">{i.type}</span>
+                      </div>
+                      <div className="card-content">
+                        <div className="card-header">
+                          <h3>{i.name}</h3>
+                          <span className="tag">{i.age}</span>
+                        </div>
+                        <p>{i.description}</p>
+                        <Link to={`/adopta/${i.id}`} className="button primary full">
+                          Conocer más
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </Slider>
+          </div>
+        </section>
 
-            <div className="card-grid four-columns">
-            {loading ? (
-                                <p>Cargando animales...</p>
-                            ) : (
-                                animals.slice(0,4).map((i) => (
-                                    <div className="card animal-card" key={i.id}>
-                                        <div className="card-image">
-                                            <img src={`${i.image}?height=200&width=300`} alt={`Animal ${i.name}`} />
-                                            <span className="badge">{i.type}</span>
-                                        </div>
-                                        <div className="card-content">
-                                            <div className="card-header">
-                                                <h3>{i.name}</h3>
-                                                <span className="tag">{i.age}</span>
-                                            </div>
-                                            <p>{i.description}</p>
-                                            <Link to={`/adopta/${i.id}`} className="button primary full">
-                                                Conocer más
-                                            </Link>
-                                        </div>
-                                    </div>
-                                ))
-                            )}
+        {/* Carrusel de Fundaciones */}
+        <section className="fundaciones-carousel">
+          <div className="container">
+            <div className="section-header with-action">
+              <h2>Fundaciones aliadas</h2>
+              <Link to="/fundaciones" className="button text">
+                Ver todas <i className="icon-arrow-right"></i>
+              </Link>
             </div>
+            <Slider
+              dots={true}
+              infinite={fundaciones.length > 3}
+              speed={500}
+              slidesToShow={3}
+              slidesToScroll={1}
+              arrows={true}
+              autoplay={true}
+              pauseOnHover={true}
+              autoplaySpeed={2000}
+              responsive={[
+                {
+                  breakpoint: 900,
+                  settings: {
+                    slidesToShow: 1,
+                    arrows: true,
+                    dots: true,
+                    autoplay: true,
+                    pauseOnHover: true,
+                    autoplaySpeed: 2000,
+                  }
+                }
+              ]}
+            >
+              {fundaciones.map((f) => (
+                <div key={f.id}>
+                  <div className="card fundacion-card">
+                    <div className="card-image">
+                      <img src={f.logo} alt={`Logo de ${f.nombre}`} />
+                    </div>
+                    <div className="card-content">
+                      <h3>{f.nombre}</h3>
+                      <span className="tag">{f.ciudad}</span>
+                      <p>{f.descripcion}</p>
+                      <Link to={`/fundaciones/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
           </div>
         </section>
 

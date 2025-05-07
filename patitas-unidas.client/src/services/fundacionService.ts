@@ -29,6 +29,33 @@ const FUNDACIONES: Fundacion[] = [
     logo: "/patitas-unidas/assets/fundacion_3.png",
     contacto: "peludos@correo.com",
     instagram: "patitasunidas_co",
+  },
+  {
+    id: 4,
+    nombre: "Amigos Peludos 4",
+    descripcion: "Ofrecemos hogar de paso y atención veterinaria en Cali.",
+    ciudad: "Cali",
+    logo: "/patitas-unidas/assets/fundacion_3.png",
+    contacto: "peludos@correo.com",
+    instagram: "patitasunidas_co",
+  },
+  {
+    id: 5,
+    nombre: "Amigos Peludos 5",
+    descripcion: "Ofrecemos hogar de paso y atención veterinaria en Cali.",
+    ciudad: "Cali",
+    logo: "/patitas-unidas/assets/fundacion_3.png",
+    contacto: "peludos@correo.com",
+    instagram: "patitasunidas_co",
+  },
+  {
+    id: 6,
+    nombre: "Amigos Peludos 6",
+    descripcion: "Ofrecemos hogar de paso y atención veterinaria en Cali.",
+    ciudad: "Cali",
+    logo: "/patitas-unidas/assets/fundacion_3.png",
+    contacto: "peludos@correo.com",
+    instagram: "patitasunidas_co",
   }
 ];
 

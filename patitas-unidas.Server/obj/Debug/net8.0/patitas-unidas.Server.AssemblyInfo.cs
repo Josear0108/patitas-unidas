@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("patitas-unidas.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8519c64ef408b6308dadd51e3d8d17e633b6bd36")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0dc84d15577ebf11c581d51599d71a7e09a6d756")]
 [assembly: System.Reflection.AssemblyProductAttribute("patitas-unidas.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("patitas-unidas.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
