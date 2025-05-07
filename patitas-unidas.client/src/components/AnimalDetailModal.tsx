@@ -1,26 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimalData } from "../types/animal";
 import { animalService } from "../services/animalService";
-import "../styles/Animal-modal.css";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
+import { useNavigate } from "react-router-dom";
+import "../styles/Animal-modal.css";
 
 interface AnimalDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   animalId: number;
+  fromUrl?: boolean
 }
 
 export default function AnimalDetailModal({
   isOpen,
   onClose,
   animalId,
+  fromUrl = false
 }: AnimalDetailModalProps) {
   useLockBodyScroll(isOpen);
   const [animal, setAnimal] = useState<AnimalData | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const modalRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isOpen && animalId && !fromUrl) {
+      navigate(`/adopta/${animalId}`, { replace: false })
+    }
+  }, [isOpen, animalId, navigate, fromUrl])
 
   useEffect(() => {
     if (isOpen && animalId) {
@@ -32,6 +43,24 @@ export default function AnimalDetailModal({
       setLoading(true);
     }
   }, [isOpen, animalId]);
+
+  useEffect(() => {
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        handleClose()
+      }
+    }
+
+    window.addEventListener("keydown", handleEscKey)
+    return () => window.removeEventListener("keydown", handleEscKey)
+  }, [isOpen])
+
+  const handleClose = () => {
+    if (!fromUrl) {
+      navigate("/adopta", { replace: true })
+    }
+    onClose()
+  }
 
   const nextImage = () => {
     if (animal && animal.images && animal.images.length > 0) {
@@ -48,6 +77,12 @@ export default function AnimalDetailModal({
       );
     }
   };
+
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+      handleClose()
+    }
+  }
 
   useEffect(() => {
     if (isOpen && !loading && animal) {
@@ -77,7 +112,7 @@ export default function AnimalDetailModal({
   return (
     <div
       className={`modal-overlay ${isOpen ? "active" : ""}`}
-      onClick={onClose}
+      onClick={handleOverlayClick}
     >
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
         {loading ? (
@@ -86,7 +121,7 @@ export default function AnimalDetailModal({
           </div>
         ) : animal ? (
           <div className="modal-content">
-            <button className="modal-close" onClick={onClose}>
+            <button className="modal-close" onClick={handleClose}>
               ×
             </button>
 
@@ -403,3 +438,4 @@ export default function AnimalDetailModal({
     </div>
   );
 }
+

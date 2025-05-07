@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,7 +142,7 @@
 
 .image-thumbnails {
   position: absolute;
-  bottom: 1rem;
+  bottom: 10%;
   left: 0;
   right: 0;
   display: flex;
@@ -285,7 +285,8 @@
 
 .tab-button.active {
   color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  border-radius: 0;
 }
 
 .tab-content {
@@ -497,16 +498,33 @@
   color: #6b7280;
 }
 
-/* Aplica a tu contenedor scrollable, p.ej. .tab-content */
 .tab-content {
   height: 435px;
+  padding-right: 10px;
   overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.1) transparent;
 }
 
 .tab-content::-webkit-scrollbar {
-  display: none;
+  width: 4px;             
+}
+
+.tab-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tab-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 2px;
+}
+
+.tab-content:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+}
+
+.tab-content:hover {
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
 }
 
 /* Responsive */

@@ -1,23 +1,44 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import AnimalDetailModal from "../components/AnimalDetailModal";
+import AnimalCard from "../components/AnimalCard";
 import { useEffect, useState } from "react";
 import { animalService } from "../services/animalService";
 import { AnimalData } from "../types/animal";
-import AnimalCard from "../components/Animal-card";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Adopta() {
+  const { id } = useParams<{ id?: string }>()
   const [animals, setAnimals] = useState<AnimalData[]>([]);
+  const [selectedAnimal, setSelectedAnimal] = useState<AnimalData | null>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    animalService.getAnimals().then((data) => {
-      setAnimals(data);
-    });
-  }, []);
+    animalService.getAnimales().then((list) => 
+      setAnimals(list.map(animal => ({
+        ...animal,
+        fundacionId: animal.fundacionId || 0
+      })))
+    )
+  }, [])
+
+  useEffect(() => {
+    if (id && animals.length > 0) {
+      const found = animals.find((a) => a.id === Number(id))
+      setSelectedAnimal(found ?? null)
+    }
+  }, [id, animals])
+
+  const handleClose = () => {
+    setSelectedAnimal(null)
+    navigate("/adopta")
+  }
 
   return (
+    <>
     <div className="page-container">
-      <Header />
-      <main>
+        <Header />
+        <main>
         <section className="adopta-hero">
           <div className="container">
             <div className="section-header">
@@ -72,7 +93,7 @@ export default function Adopta() {
 
             <div className="animals-grid">
               {animals.map((animal) => (
-                <AnimalCard key={animal.id} animal={animal} />
+                <AnimalCard key={animal.id} animal={animal} onSelect={() => setSelectedAnimal(animal)} />
               ))}
             </div>
 
@@ -84,5 +105,14 @@ export default function Adopta() {
       </main>
       <Footer />
     </div>
+
+    {selectedAnimal && (
+        <AnimalDetailModal
+          isOpen={true}
+          onClose={handleClose}
+          animalId={selectedAnimal.id}
+        />
+      )}
+    </>
   );
 }

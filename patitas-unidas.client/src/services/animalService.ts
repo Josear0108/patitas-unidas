@@ -113,7 +113,7 @@ const ANIMALES: Animal[] = [
     fundacionId: 3,
   },
   {
-    id: 6,
+    id: 122,
     name: "Tyson",
     type: "Perro",
     state: "No adopción",
@@ -201,8 +201,6 @@ const AnimalsData: AnimalData[] = [
     story:
       "Maximiliano fue encontrado abandonado en un parque cuando apenas tenía 2 años. Estaba desnutrido y asustado. Un rescatista lo llevó a su casa, donde recibió atención veterinaria y mucho amor. Ahora está completamente recuperado y listo para encontrar un hogar definitivo donde pueda dar todo su amor.",
     images: [
-      "/patitas-unidas/assets/patita_1.jpg",
-      "/patitas-unidas/assets/patita_1.jpg",
       "/patitas-unidas/assets/patita_1.jpg",
     ],
     createdAt: "2023-05-15",
@@ -590,7 +588,7 @@ const AnimalsData: AnimalData[] = [
       phone: "+57 300 123 4567",
     },
   },
-  {
+  { 
     id: 6,
     name: "Francheska",
     type: "Gato",
