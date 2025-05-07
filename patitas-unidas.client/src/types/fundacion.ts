@@ -5,4 +5,7 @@ export interface Fundacion {
   ciudad: string;
   logo: string;
   contacto: string;
+  instagram?: string;
+  whatsapp?: string;
+  facebook?: string;
 } 

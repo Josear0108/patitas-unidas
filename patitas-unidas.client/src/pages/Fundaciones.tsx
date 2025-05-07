@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fundacionService } from "../services/fundacionService";
 import { Fundacion } from "../types/fundacion";
+import ModalContacto from "../components/ModalContacto";
 
 export default function Fundaciones() {
   const [fundaciones, setFundaciones] = useState<Fundacion[]>([]);
   const [loading, setLoading] = useState(true);
+  const [modalAbierto, setModalAbierto] = useState<null | Fundacion>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -52,7 +54,7 @@ export default function Fundaciones() {
                       <h3>{f.nombre}</h3>
                       <span className="tag">{f.ciudad}</span>
                       <p>{f.descripcion}</p>
-                      <a href={`mailto:${f.contacto}`} className="button secondary full">Contactar</a>
+                      <button className="button secondary full" onClick={() => setModalAbierto(f)}>Contactar</button>
                       <Link to={`/fundaciones/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
                     </div>
                   </div>
@@ -90,6 +92,16 @@ export default function Fundaciones() {
         </section>
       </main>
       <Footer />
+      {modalAbierto && (
+        <ModalContacto
+          instagram={modalAbierto.instagram}
+          whatsapp={modalAbierto.whatsapp}
+          facebook={modalAbierto.facebook}
+          correo={modalAbierto.contacto}
+          nombreFundacion={modalAbierto.nombre}
+          onClose={() => setModalAbierto(null)}
+        />
+      )}
     </div>
   );
 } 

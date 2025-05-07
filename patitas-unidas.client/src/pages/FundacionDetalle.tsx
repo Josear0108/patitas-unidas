@@ -7,6 +7,7 @@ import { Animal } from "../types/animal";
 import { animalService } from "../services/animalService";
 import { fundacionService } from "../services/fundacionService";
 import { Fundacion } from "../types/fundacion";
+import ModalContacto from "../components/ModalContacto";
 
 export default function FundacionDetalle() {
   const { id } = useParams();
@@ -14,6 +15,7 @@ export default function FundacionDetalle() {
   const [animales, setAnimales] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingFundacion, setLoadingFundacion] = useState(true);
+  const [modalAbierto, setModalAbierto] = useState(false);
 
   useEffect(() => {
     setLoadingFundacion(true);
@@ -69,7 +71,7 @@ export default function FundacionDetalle() {
                 <h1>{fundacion.nombre}</h1>
                 <span className="tag">{fundacion.ciudad}</span>
                 <p>{fundacion.descripcion}</p>
-                <a href={`mailto:${fundacion.contacto}`} className="button secondary">Contactar</a>
+                <button className="button secondary" onClick={() => setModalAbierto(true)}>Contactar</button>
               </div>
             </div>
           </div>
@@ -109,6 +111,16 @@ export default function FundacionDetalle() {
         </section>
       </main>
       <Footer />
+      {modalAbierto && fundacion && (
+        <ModalContacto
+          instagram={fundacion.instagram}
+          whatsapp={fundacion.whatsapp}
+          facebook={fundacion.facebook}
+          correo={fundacion.contacto}
+          nombreFundacion={fundacion.nombre}
+          onClose={() => setModalAbierto(false)}
+        />
+      )}
     </div>
   );
 } 

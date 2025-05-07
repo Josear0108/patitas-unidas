@@ -9,6 +9,8 @@ const FUNDACIONES: Fundacion[] = [
     ciudad: "Bogotá",
     logo: "/patitas-unidas/assets/fundacion_1.png",
     contacto: "huellitas@correo.com",
+    instagram: "patitasunidas_co",
+    whatsapp: "573214406924",
   },
   {
     id: 2,
@@ -17,6 +19,7 @@ const FUNDACIONES: Fundacion[] = [
     ciudad: "Medellín",
     logo: "/patitas-unidas/assets/fundacion_2.png",
     contacto: "felices@correo.com",
+    instagram: "patitasunidas_co",
   },
   {
     id: 3,
@@ -25,6 +28,7 @@ const FUNDACIONES: Fundacion[] = [
     ciudad: "Cali",
     logo: "/patitas-unidas/assets/fundacion_3.png",
     contacto: "peludos@correo.com",
+    instagram: "patitasunidas_co",
   }
 ];
 

@@ -1,0 +1,81 @@
+.modal-contacto-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-contacto {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 320px;
+  max-width: 90vw;
+  position: relative;
+  text-align: center;
+  animation: modalFadeIn 0.2s;
+}
+
+@keyframes modalFadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-contacto-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.modal-contacto-close:hover {
+  color: #F50057;
+}
+
+.modal-contacto h2 {
+  margin-bottom: 1.5rem;
+  color: #222;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-contacto-redes {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.modal-contacto-redes a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #f7f7f7;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: background 0.2s, transform 0.2s;
+  font-size: 2rem;
+}
+.modal-contacto-redes a:hover {
+  background: #ffe0ef;
+  transform: scale(1.08);
+}
+
+.modal-contacto-ayuda {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+} 
