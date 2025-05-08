@@ -1,30 +1,52 @@
-import { Link } from "react-router-dom"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import AnimalDetailModal from "../components/AnimalDetailModal";
+import AnimalCard from "../components/AnimalCard";
 import { useEffect, useState } from "react";
 import { animalService } from "../services/animalService";
-import { Animal } from "../types/animal";
+import { AnimalData } from "../types/animal";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Adopta() {
-  const [animals, setAnimals] = useState<Animal[]>([]);
+  const { id } = useParams<{ id?: string }>()
+  const [animals, setAnimals] = useState<AnimalData[]>([]);
+  const [selectedAnimal, setSelectedAnimal] = useState<AnimalData | null>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    animalService.getAnimales().then((data) => {
-      setAnimals(data);
-    });
-  }, []);
+    animalService.getAnimales().then((list) => 
+      setAnimals(list.map(animal => ({
+        ...animal,
+        fundacionId: animal.fundacionId || 0
+      })))
+    )
+  }, [])
+
+  useEffect(() => {
+    if (id && animals.length > 0) {
+      const found = animals.find((a) => a.id === Number(id))
+      setSelectedAnimal(found ?? null)
+    }
+  }, [id, animals])
+
+  const handleClose = () => {
+    setSelectedAnimal(null)
+    navigate("/adopta")
+  }
 
   return (
+    <>
     <div className="page-container">
-      <Header />
-      <main>
+        <Header />
+        <main>
         <section className="adopta-hero">
           <div className="container">
             <div className="section-header">
               <h1>Encuentra a tu compañero ideal</h1>
               <p>
-                Todos estos animales están esperando una segunda oportunidad. Filtra según tus preferencias y encuentra
-                el compañero perfecto para tu hogar.
+                Todos estos animales están esperando una segunda oportunidad.
+                Filtra según tus preferencias y encuentra el compañero perfecto
+                para tu hogar.
               </p>
             </div>
 
@@ -70,33 +92,8 @@ export default function Adopta() {
             </div>
 
             <div className="animals-grid">
-              {animals.map((i) => (
-                <div className="card animal-card" key={i.id}>
-                  <div className="card-image">
-                    <img src={`${i.image}?height=200&width=300`} alt={`Animal ${i}`} />
-                    <span className="badge">{i.type}</span>
-                    {i.state == "Urgente" && <span className="badge urgent">Urgente</span>}
-                  </div>
-                  <div className="card-content">
-                    <div className="card-header">
-                      <h3>
-                        {i.name}
-                      </h3>
-                      <span className={`tag ${i.age == "Adulto"? "tag-warning" : "tag-success"}`}>
-                        {i.age}
-                      </span>
-                    </div>
-                    <div className="tags">
-                      <span className="tag tag-small">{i.tag}</span>
-                    </div>
-                    <p>
-                      {i.description}
-                    </p>
-                    <Link to={`/adopta/${i}`} className="button primary full">
-                      Conocer más
-                    </Link>
-                  </div>
-                </div>
+              {animals.map((animal) => (
+                <AnimalCard key={animal.id} animal={animal} onSelect={() => setSelectedAnimal(animal)} />
               ))}
             </div>
 
@@ -108,5 +105,14 @@ export default function Adopta() {
       </main>
       <Footer />
     </div>
-  )
+
+    {selectedAnimal && (
+        <AnimalDetailModal
+          isOpen={true}
+          onClose={handleClose}
+          animalId={selectedAnimal.id}
+        />
+      )}
+    </>
+  );
 }
