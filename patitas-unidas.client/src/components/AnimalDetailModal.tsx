@@ -438,7 +438,6 @@ export default function AnimalDetailModal({
                     </div>
                   </div>
                 </div>
-
                 <div className="adoption-button-container">
                   <button className="button primary">
                     Quiero adoptar a {animal.name}
