@@ -49,7 +49,7 @@ const target = env.ASPNETCORE_HTTPS_PORT
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/patitas-unidas/" : "/",
+  base: mode != "production" ? "/patitas-unidas/" : "/",
   plugins: [react()],
   resolve: {
     alias: {

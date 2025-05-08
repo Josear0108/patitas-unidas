@@ -172,9 +172,14 @@
   object-fit: cover;
 }
 
+.modal-content-right{
+  height: 100%;
+}
+
 .modal-animal-info {
-  padding: 1.5rem;
-  overflow-y: auto;
+  height: calc(100% - 70px);
+  padding: 3.5rem 1.5rem 0.5rem 1.5rem;
+  overflow-y: hidden;
 }
 
 .animal-header {
@@ -254,10 +259,6 @@
 
 .badge-red {
   background-color: #ef4444;
-}
-
-.animal-tabs {
-  margin-bottom: 1.5rem;
 }
 
 .tabs-header {
@@ -487,9 +488,19 @@
 }
 
 .adoption-button-container {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e5e7eb;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  background: white;
+  z-index: 2;
+}
+
+.adoption-button-container .button {
+  width: 100%;
+  max-width: 400px;
 }
 
 .modal-error {
