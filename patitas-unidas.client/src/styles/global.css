@@ -236,7 +236,12 @@ textarea {
 }
 
 .card-content {
-  padding: 1.5rem;
+  
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.6rem 1.2rem 2rem 1.2rem;
 }
 
 .card-header {
@@ -328,6 +333,8 @@ main {
   font-size: 0.75rem;
   font-weight: 500;
   border: 1px solid var(--color-border);
+  width: 90px;              /* ancho fijo */
+  text-align: center;  
 }
 
 .tag-warning {
@@ -766,6 +773,18 @@ main {
   padding: 4rem 0;
   background-color: var(--color-background);
 }
+
+.animal-card {
+  min-height: 440px;
+  max-height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  background: #fff;
+}
+
 
 .animal-card .card-image {
   position: relative;
@@ -1257,4 +1276,65 @@ main {
   .donation-amounts {
     grid-template-columns: 1fr;
   }
+}
+
+.foundation-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+
+.foundation-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.foundation-card .card-image {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+}
+
+.foundation-card .card-image img {
+  max-width: 100%;
+  max-height: 160px;
+  border-radius: 0.5rem;
+}
+
+.foundation-card .card-content {
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.foundation-card h3 {
+  margin: 0.5rem 0 0.2rem 0;
+  font-size: 1.3rem;
+  color: #2d3a4a;
+}
+
+.foundation-card .tag {
+  display: inline-block;
+  background: #e3f0ff;
+  color: #2563eb;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.foundation-card p {
+  color: #4a5568;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.foundation-card .button {
+  margin-top: 0.5rem;
 }

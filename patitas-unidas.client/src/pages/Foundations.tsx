@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { foundationService } from "../services/foundationService";
 import { Foundation } from "../types/foundation";
 import ContactModal from "../components/ContactModal";
+import FoundationCard from "../components/FoundationCard";
 
 export default function FoundationList() {
   const [foundation, setFoundation] = useState<Foundation[]>([]);
@@ -46,18 +47,7 @@ export default function FoundationList() {
                 <p>No hay fundaciones registradas.</p>
               ) : (
                 foundation.map((f) => (
-                  <div className="card foundation-card" key={f.id}>
-                    <div className="card-image">
-                      <img src={f.logo} alt={`Logo de ${f.name}`} />
-                    </div>
-                    <div className="card-content">
-                      <h3>{f.name}</h3>
-                      <span className="tag">{f.city}</span>
-                      <p>{f.description}</p>
-                      <button className="button secondary full" onClick={() => setOpenModal(f)}>Contactar</button>
-                      <Link to={`/foundations/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
-                    </div>
-                  </div>
+                  <FoundationCard key={f.id} foundation={f} onContact={() => setOpenModal(f)} />
                 ))
               )}
             </div>

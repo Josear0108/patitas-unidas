@@ -1,13 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "../styles/Foundations.css";
+import "../styles/FoundationDetail.css";
 import { useEffect, useState } from "react";
 import { Animal } from "../types/animal";
 import { animalService } from "../services/animalService";
 import { foundationService } from "../services/foundationService";
 import { Foundation } from "../types/foundation";
 import ContactModal from "../components/ContactModal";
+import AnimalCard from "../components/AnimalCard";
+import AnimalDetailModal from "../components/AnimalDetailModal";
 
 export default function FoundationDetail() {
   const { id } = useParams();
@@ -16,6 +18,7 @@ export default function FoundationDetail() {
   const [loading, setLoading] = useState(true);
   const [loadingFoundation, setLoadingFoundation] = useState(true);
   const [openModal, setOpenModal] = useState(false);
+  const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
 
   useEffect(() => {
     setLoadingFoundation(true);
@@ -89,21 +92,7 @@ export default function FoundationDetail() {
                 <p>No hay animales registrados para esta fundación.</p>
               ) : (
                 animals.map((i: Animal) => (
-                  <div className="card animal-card" key={i.id}>
-                    <div className="card-image">
-                      <img src={i.image} alt={`Animal ${i.name}`} />
-                      <span className="badge">{i.type}</span>
-                      {i.state === "Urgente" && <span className="badge urgent">Urgente</span>}
-                    </div>
-                    <div className="card-content">
-                      <div className="card-header">
-                        <h3>{i.name}</h3>
-                        <span className={`tag ${i.age === "Adulto" ? "tag-warning" : "tag-success"}`}>{i.age}</span>
-                      </div>
-                      {i.tag && <span className="tag tag-small">{i.tag}</span>}
-                      <p>{i.description}</p>
-                    </div>
-                  </div>
+                  <AnimalCard key={i.id} animal={{ ...i, fundacionId: i.fundacionId ?? 0 }} onSelect={() => setSelectedAnimal(i)} />
                 ))
               )}
             </div>
@@ -117,6 +106,14 @@ export default function FoundationDetail() {
           email={foundation.email}
           name={foundation.name}
           onClose={() => setOpenModal(false)}
+        />
+      )}
+      {selectedAnimal && (
+        <AnimalDetailModal
+          isOpen={true}
+          onClose={() => setSelectedAnimal(null)}
+          animalId={selectedAnimal.id}
+          fromUrl={true}
         />
       )}
     </div>

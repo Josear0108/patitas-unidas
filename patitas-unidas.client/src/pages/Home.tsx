@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import "../styles/Home.css"
@@ -10,11 +10,16 @@ import { Foundation } from "../types/foundation";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AnimalCard from "../components/AnimalCard";
+import FoundationCard from "../components/FoundationCard";
+import ContactModal from "../components/ContactModal";
 
 export default function Home() {
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
   const [foundations, setFoundations] = useState<Foundation[]>([]);
+  const [openModal, setOpenModal] = useState<Foundation | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     animalService.getAnimales().then((data) => {
@@ -185,24 +190,12 @@ export default function Home() {
               {loading ? (
                 <div><p>Cargando animales...</p></div>
               ) : (
-                animals.slice(0, 8).map((i) => (
-                  <div key={i.id}>
-                    <div className="card animal-card">
-                      <div className="card-image">
-                        <img src={`${i.image}?height=200&width=300`} alt={`Animal ${i.name}`} />
-                        <span className="badge">{i.type}</span>
-                      </div>
-                      <div className="card-content">
-                        <div className="card-header">
-                          <h3>{i.name}</h3>
-                          <span className="tag">{i.age}</span>
-                        </div>
-                        <p>{i.description}</p>
-                        <Link to={`/adopta/${i.id}`} className="button primary full">
-                          Conocer más
-                        </Link>
-                      </div>
-                    </div>
+                animals.slice(0, 8).map((animal) => (
+                  <div key={animal.id}>
+                    <AnimalCard
+                      animal={{ ...animal, fundacionId: animal.fundacionId ?? 0 }}
+                      onSelect={() => navigate(`/adopta/${animal.id}`)}
+                    />
                   </div>
                 ))
               )}
@@ -228,7 +221,7 @@ export default function Home() {
               arrows={true}
               autoplay={true}
               pauseOnHover={true}
-              autoplaySpeed={2000}
+              autoplaySpeed={7000}
               responsive={[
                 {
                   breakpoint: 900,
@@ -238,24 +231,14 @@ export default function Home() {
                     dots: true,
                     autoplay: true,
                     pauseOnHover: true,
-                    autoplaySpeed: 2000,
+                    autoplaySpeed: 7000,
                   }
                 }
               ]}
             >
               {foundations.map((f) => (
                 <div key={f.id}>
-                  <div className="card fundacion-card">
-                    <div className="card-image">
-                      <img src={f.logo} alt={`Logo de ${f.name}`} />
-                    </div>
-                    <div className="card-content">
-                      <h3>{f.name}</h3>
-                      <span className="tag">{f.city}</span>
-                      <p>{f.description}</p>
-                      <Link to={`/foundations/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
-                    </div>
-                  </div>
+                  <FoundationCard foundation={f} onContact={() => setOpenModal(f)} />
                 </div>
               ))}
             </Slider>
@@ -351,6 +334,14 @@ export default function Home() {
       </main>
 
       <Footer />
+      {openModal && (
+        <ContactModal
+          socialMedia={openModal.contact}
+          email={openModal.email}
+          name={openModal.name}
+          onClose={() => setOpenModal(null)}
+        />
+      )}
     </div>
   )
 }
