@@ -1,33 +1,33 @@
 /* Estilos para la página de Fundaciones */
 
-.fundaciones-hero {
+.foundation-hero {
   background: linear-gradient(to bottom, #fce4ec, #ffffff);
   padding: 3rem 0 2rem 0;
   text-align: center;
 }
 
-.fundaciones-hero .section-header h1 {
+.foundation-hero .section-header h1 {
   font-size: 2.5rem;
   color: #2d3a4a;
   margin-bottom: 0.5rem;
 }
 
-.fundaciones-hero .section-header p {
+.foundation-hero .section-header p {
   color: #4a5568;
   font-size: 1.2rem;
 }
 
-.fundaciones-list {
+.foundation-list {
   padding: 2rem 0;
 }
 
-.fundaciones-list .card-grid {
+.foundation-list .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
-.fundacion-card {
+.foundation-card {
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
@@ -38,11 +38,11 @@
   transition: box-shadow 0.2s;
 }
 
-.fundacion-card:hover {
+.foundation-card:hover {
   box-shadow: 0 4px 24px rgba(0,0,0,0.12);
 }
 
-.fundacion-card .card-image {
+.foundation-card .card-image {
   width: 100%;
   height: 180px;
   display: flex;
@@ -51,24 +51,24 @@
   background: #f1f5f9;
 }
 
-.fundacion-card .card-image img {
+.foundation-card .card-image img {
   max-width: 100%;
   max-height: 160px;
   border-radius: 0.5rem;
 }
 
-.fundacion-card .card-content {
+.foundation-card .card-content {
   padding: 1.2rem;
   text-align: center;
 }
 
-.fundacion-card h3 {
+.foundation-card h3 {
   margin: 0.5rem 0 0.2rem 0;
   font-size: 1.3rem;
   color: #2d3a4a;
 }
 
-.fundacion-card .tag {
+.foundation-card .tag {
   display: inline-block;
   background: #e3f0ff;
   color: #2563eb;
@@ -78,22 +78,22 @@
   margin-bottom: 0.5rem;
 }
 
-.fundacion-card p {
+.foundation-card p {
   color: #4a5568;
   font-size: 1rem;
   margin-bottom: 1rem;
 }
 
-.fundacion-card .button {
+.foundation-card .button {
   margin-top: 0.5rem;
 }
 
-.fundaciones-contact {
+.foundation-contact {
   background: linear-gradient(to bottom, #ffffff, #fce4ec);;
   padding: 2.5rem 0;
 }
 
-.fundaciones-contact .form-container {
+.foundation-contact .form-container {
   max-width: 500px;
   margin: 0 auto;
   background: #fff;
@@ -102,22 +102,22 @@
   padding: 2rem;
 }
 
-.fundaciones-contact h2 {
+.foundation-contact h2 {
   color: #2d3a4a;
   margin-bottom: 0.5rem;
 }
 
-.fundaciones-contact p {
+.foundation-contact p {
   color: #4a5568;
   margin-bottom: 1.5rem;
 }
 
-.fundacion-form .form-group {
+.foundation-form .form-group {
   margin-bottom: 1rem;
 }
 
-.fundacion-form input,
-.fundacion-form textarea {
+.foundation-form input,
+.foundation-form textarea {
   width: 100%;
   padding: 0.7rem;
   border: 1px solid #cbd5e1;
@@ -127,17 +127,17 @@
   transition: border 0.2s;
 }
 
-.fundacion-form input:focus,
-.fundacion-form textarea:focus {
+.foundation-form input:focus,
+.foundation-form textarea:focus {
   border: 1.5px solid #2563eb;
   outline: none;
 }
 
-.fundacion-form button {
+.foundation-form button {
   margin-top: 1rem;
 }
 
-.fundacion-logo {
+.foundation-logo {
   width: 120px;
   height: 120px;
   object-fit: cover;
@@ -147,31 +147,31 @@
 }
 
 @media (max-width: 900px) {
-  .fundaciones-list .card-grid {
+  .foundation-list .card-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .fundaciones-list .card-grid {
+  .foundation-list .card-grid {
     grid-template-columns: 1fr;
   }
-  .fundaciones-contact .form-container {
+  .foundation-contact .form-container {
     padding: 1rem;
   }
-  .fundacion-logo {
+  .foundation-logo {
     width: 80px;
     height: 80px;
     margin-right: 1rem;
   }
 }
 
-.fundacion-detalle-hero {
+.foundation-detalle-hero {
   background: linear-gradient(to bottom, #fce4ec, #ffffff);
   padding: 3rem 0 2rem 0;
 }
 
-.fundacion-detalle-header {
+.foundation-detalle-header {
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -183,39 +183,39 @@
   padding: 2rem 2.5rem;
 }
 
-.fundacion-detalle-header h1 {
+.foundation-detalle-header h1 {
   font-size: 2.5rem;
   color: #2d3a4a;
   margin-bottom: 0.5rem;
 }
 
-.fundacion-detalle-header .tag {
+.foundation-detalle-header .tag {
   margin-bottom: 0.5rem;
   display: inline-block;
 }
 
-.fundacion-detalle-header p {
+.foundation-detalle-header p {
   color: #4a5568;
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
-.fundacion-detalle-header .button {
+.foundation-detalle-header .button {
   margin-top: 0.5rem;
 }
 
 @media (max-width: 900px) {
-  .fundacion-detalle-header {
+  .foundation-detalle-header {
     flex-direction: column;
     align-items: flex-start;
     padding: 1.5rem 1rem;
   }
-  .fundacion-logo {
+  .foundation-logo {
     margin-right: 0;
     margin-bottom: 1rem;
   }
 }
 
-.fundacion-animales-list {
+.foundation-animales-list {
   margin: 2.5rem 0 2.5rem 0;
 } 

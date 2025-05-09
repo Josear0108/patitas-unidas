@@ -6,4 +6,10 @@ export interface Foundation {
     description: string
     email: string
     phone: string
+    contact: Contact[]
+  }
+
+  export interface Contact {
+    socialMedia: string
+    url: string
   }

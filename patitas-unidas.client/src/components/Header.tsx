@@ -55,7 +55,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link to="/fundaciones" className={isActive("/fundaciones")} onClick={closeMenu}>
+                <Link to="/foundations" className={isActive("/foundations")} onClick={closeMenu}>
                   Fundaciones
                 </Link>
               </li>

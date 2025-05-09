@@ -428,7 +428,7 @@ export default function AnimalDetailModal({
                           </div>
 
                           <a
-                            href={`/fundaciones/${animal.foundation.id}`}
+                            href={`/foundations/${animal.foundation.id}`}
                             className="foundation-link"
                           >
                             Ver más animales de esta fundación

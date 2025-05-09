@@ -1,21 +1,21 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "/src/styles/Fundaciones.css"
+import "../styles/Foundations.css"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fundacionService } from "../services/fundacionService";
-import { Fundacion } from "../types/fundacion";
-import ModalContacto from "../components/ModalContacto";
+import { foundationService } from "../services/foundationService";
+import { Foundation } from "../types/foundation";
+import ContactModal from "../components/ContactModal";
 
-export default function Fundaciones() {
-  const [fundaciones, setFundaciones] = useState<Fundacion[]>([]);
+export default function FoundationList() {
+  const [foundation, setFoundation] = useState<Foundation[]>([]);
   const [loading, setLoading] = useState(true);
-  const [modalAbierto, setModalAbierto] = useState<null | Fundacion>(null);
+  const [openModal, setOpenModal] = useState<null | Foundation>(null);
 
   useEffect(() => {
     setLoading(true);
-    fundacionService.getFundaciones().then((data) => {
-      setFundaciones(data);
+    foundationService.getFoundations().then((data) => {
+      setFoundation(data);
       setLoading(false);
     });
   }, []);
@@ -25,7 +25,7 @@ export default function Fundaciones() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="fundaciones-hero">
+        <section className="foundation-hero">
           <div className="container">
             <div className="section-header">
               <h1>Fundaciones aliadas</h1>
@@ -37,25 +37,25 @@ export default function Fundaciones() {
         </section>
 
         {/* Listado de Fundaciones */}
-        <section className="fundaciones-list">
+        <section className="foundation-list">
           <div className="container">
             <div className="card-grid three-columns">
               {loading ? (
                 <p>Cargando fundaciones...</p>
-              ) : fundaciones.length === 0 ? (
+              ) : foundation.length === 0 ? (
                 <p>No hay fundaciones registradas.</p>
               ) : (
-                fundaciones.map((f) => (
-                  <div className="card fundacion-card" key={f.id}>
+                foundation.map((f) => (
+                  <div className="card foundation-card" key={f.id}>
                     <div className="card-image">
-                      <img src={f.logo} alt={`Logo de ${f.nombre}`} />
+                      <img src={f.logo} alt={`Logo de ${f.name}`} />
                     </div>
                     <div className="card-content">
-                      <h3>{f.nombre}</h3>
-                      <span className="tag">{f.ciudad}</span>
-                      <p>{f.descripcion}</p>
-                      <button className="button secondary full" onClick={() => setModalAbierto(f)}>Contactar</button>
-                      <Link to={`/fundaciones/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
+                      <h3>{f.name}</h3>
+                      <span className="tag">{f.city}</span>
+                      <p>{f.description}</p>
+                      <button className="button secondary full" onClick={() => setOpenModal(f)}>Contactar</button>
+                      <Link to={`/foundations/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
                     </div>
                   </div>
                 ))
@@ -65,12 +65,12 @@ export default function Fundaciones() {
         </section>
 
         {/* Formulario para nuevas fundaciones */}
-        <section className="fundaciones-contact">
+        <section className="foundation-contact">
           <div className="container">
             <div className="form-container">
               <h2>¿Tu fundación quiere unirse?</h2>
               <p>Completa el formulario y nos pondremos en contacto contigo.</p>
-              <form className="fundacion-form">
+              <form className="foundation-form">
                 <div className="form-group">
                   <input type="text" placeholder="Nombre de la fundación" required />
                 </div>
@@ -92,14 +92,12 @@ export default function Fundaciones() {
         </section>
       </main>
       <Footer />
-      {modalAbierto && (
-        <ModalContacto
-          instagram={modalAbierto.instagram}
-          whatsapp={modalAbierto.whatsapp}
-          facebook={modalAbierto.facebook}
-          correo={modalAbierto.contacto}
-          nombreFundacion={modalAbierto.nombre}
-          onClose={() => setModalAbierto(null)}
+      {openModal && (
+        <ContactModal
+          socialMedia={openModal.contact}
+          email={openModal.email}
+          name={openModal.name}
+          onClose={() => setOpenModal(null)}
         />
       )}
     </div>

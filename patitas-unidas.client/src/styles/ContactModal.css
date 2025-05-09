@@ -1,4 +1,4 @@
-.modal-contacto-overlay {
+.modal-contact-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.modal-contacto {
+.modal-contact {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.12);
@@ -28,7 +28,7 @@
   to { transform: scale(1); opacity: 1; }
 }
 
-.modal-contacto-close {
+.modal-contact-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -39,25 +39,25 @@
   cursor: pointer;
   transition: color 0.2s;
 }
-.modal-contacto-close:hover {
+.modal-contact-close:hover {
   color: #F50057;
 }
 
-.modal-contacto h2 {
+.modal-contact h2 {
   margin-bottom: 1.5rem;
   color: #222;
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.modal-contacto-redes {
+.modal-contact-social {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
   margin-bottom: 1.2rem;
 }
 
-.modal-contacto-redes a {
+.modal-contact-social a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,12 +69,12 @@
   transition: background 0.2s, transform 0.2s;
   font-size: 2rem;
 }
-.modal-contacto-redes a:hover {
+.modal-contact-social a:hover {
   background: #ffe0ef;
   transform: scale(1.08);
 }
 
-.modal-contacto-ayuda {
+.modal-contact-help {
   color: #666;
   font-size: 1rem;
   margin-top: 0.5rem;

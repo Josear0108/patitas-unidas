@@ -5,8 +5,8 @@ import "../styles/Home.css"
 import { useEffect, useMemo, useState } from "react";
 import { animalService } from "../services/animalService";
 import { Animal } from "../types/animal";
-import { fundacionService } from "../services/fundacionService";
-import { Fundacion } from "../types/fundacion";
+import { foundationService } from "../services/foundationService";
+import { Foundation } from "../types/foundation";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,14 +14,14 @@ import "slick-carousel/slick/slick-theme.css";
 export default function Home() {
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
-  const [fundaciones, setFundaciones] = useState<Fundacion[]>([]);
+  const [foundations, setFoundations] = useState<Foundation[]>([]);
 
   useEffect(() => {
     animalService.getAnimales().then((data) => {
       setAnimals(data);
       setLoading(false);
     });
-    fundacionService.getFundaciones().then(setFundaciones);
+    foundationService.getFoundations().then(setFoundations);
   }, []);
 
   const randomImage = useMemo(() => {
@@ -211,17 +211,17 @@ export default function Home() {
         </section>
 
         {/* Carrusel de Fundaciones */}
-        <section className="fundaciones-carousel">
+        <section className="foundations-carousel">
           <div className="container">
             <div className="section-header with-action">
               <h2>Fundaciones aliadas</h2>
-              <Link to="/fundaciones" className="button text">
+              <Link to="/foundations" className="button text">
                 Ver todas <i className="icon-arrow-right"></i>
               </Link>
             </div>
             <Slider
               dots={true}
-              infinite={fundaciones.length > 3}
+              infinite={foundations.length > 3}
               speed={500}
               slidesToShow={3}
               slidesToScroll={1}
@@ -243,17 +243,17 @@ export default function Home() {
                 }
               ]}
             >
-              {fundaciones.map((f) => (
+              {foundations.map((f) => (
                 <div key={f.id}>
                   <div className="card fundacion-card">
                     <div className="card-image">
-                      <img src={f.logo} alt={`Logo de ${f.nombre}`} />
+                      <img src={f.logo} alt={`Logo de ${f.name}`} />
                     </div>
                     <div className="card-content">
-                      <h3>{f.nombre}</h3>
-                      <span className="tag">{f.ciudad}</span>
-                      <p>{f.descripcion}</p>
-                      <Link to={`/fundaciones/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
+                      <h3>{f.name}</h3>
+                      <span className="tag">{f.city}</span>
+                      <p>{f.description}</p>
+                      <Link to={`/foundations/${f.id}`} className="button primary full" style={{marginTop: '0.5rem'}}>Ver más</Link>
                     </div>
                   </div>
                 </div>
