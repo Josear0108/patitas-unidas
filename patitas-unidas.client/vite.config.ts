@@ -48,8 +48,8 @@ const target = env.ASPNETCORE_HTTPS_PORT
   : "https://localhost:7100";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: mode != "production" ? "/patitas-unidas/" : "/patitas-unidas/",
+export default defineConfig({
+  base: "/patitas-unidas/",
   plugins: [react()],
   resolve: {
     alias: {
@@ -69,4 +69,4 @@ export default defineConfig(({ mode }) => ({
       cert: fs.readFileSync(certFilePath),
     },
   },
-}));
+});
