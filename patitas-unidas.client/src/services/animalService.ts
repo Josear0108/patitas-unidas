@@ -213,6 +213,16 @@ const AnimalsData: AnimalData[] = [
         "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
       email: "contacto@huellitasdeamor.org",
       phone: "+57 300 123 4567",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/huellitasdeamor",
+        },
+        {
+          socialMedia: "Instagram",
+          url: "https://www.instagram.com/huellitasdeamor",
+        },
+      ],
     },
   },
   {
@@ -259,6 +269,13 @@ const AnimalsData: AnimalData[] = [
         "Fundación dedicada al rescate y rehabilitación de gatos callejeros en Medellín.",
       email: "info@patitasfelices.org",
       phone: "+57 311 456 7890",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/patitasfelices",
+        },
+        
+      ],
     },
   },
   {
@@ -306,6 +323,13 @@ const AnimalsData: AnimalData[] = [
         "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
       email: "contacto@huellitasdeamor.org",
       phone: "+57 300 123 4567",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/huellitasdeamor",
+        },
+        
+      ],
     },
   },
   {
@@ -354,6 +378,13 @@ const AnimalsData: AnimalData[] = [
         "Organización dedicada al rescate y rehabilitación de perros en situación de calle y maltrato en Cali.",
       email: "contacto@amigospeludos.org",
       phone: "+57 322 789 0123",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/amigospeludos",
+        },
+        
+      ],
     },
   },
   {
@@ -401,6 +432,12 @@ const AnimalsData: AnimalData[] = [
         "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
       email: "contacto@huellitasdeamor.org",
       phone: "+57 300 123 4567",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/huellitasdeamor",
+        },
+      ],
     },
   },
   {
@@ -448,6 +485,13 @@ const AnimalsData: AnimalData[] = [
         "Fundación dedicada al rescate y rehabilitación de gatos callejeros en Medellín.",
       email: "info@patitasfelices.org",
       phone: "+57 311 456 7890",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/patitasfelices",
+        },
+        
+      ],
     },
   },
   {
@@ -493,6 +537,13 @@ const AnimalsData: AnimalData[] = [
         "Organización dedicada al rescate y rehabilitación de perros en situación de calle y maltrato en Cali.",
       email: "contacto@amigospeludos.org",
       phone: "+57 322 789 0123",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/amigospeludos",
+        },
+        
+      ],
     },
   },
   {
@@ -539,6 +590,13 @@ const AnimalsData: AnimalData[] = [
         "Fundación dedicada al rescate y rehabilitación de gatos callejeros en Medellín.",
       email: "info@patitasfelices.org",
       phone: "+57 311 456 7890",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/patitasfelices",
+        },
+        
+      ],
     },
   },
   {
@@ -586,6 +644,13 @@ const AnimalsData: AnimalData[] = [
         "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
       email: "contacto@huellitasdeamor.org",
       phone: "+57 300 123 4567",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/huellitasdeamor",
+        },
+        
+      ],
     },
   },
   { 
@@ -633,6 +698,13 @@ const AnimalsData: AnimalData[] = [
         "Organización dedicada al rescate y rehabilitación de perros en situación de calle y maltrato en Cali.",
       email: "contacto@amigospeludos.org",
       phone: "+57 322 789 0123",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/amigospeludos",
+        },
+        
+      ],
     },
   },
   {
@@ -679,6 +751,13 @@ const AnimalsData: AnimalData[] = [
         "Fundación dedicada al rescate y rehabilitación de gatos callejeros en Medellín.",
       email: "info@patitasfelices.org",
       phone: "+57 311 456 7890",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/patitasfelices",
+        },
+        
+      ],
     },
   },
   // Animales de apadrinamiento
@@ -725,6 +804,13 @@ const AnimalsData: AnimalData[] = [
         "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
       email: "contacto@huellitasdeamor.org",
       phone: "+57 300 123 4567",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/huellitasdeamor",
+        },
+        
+      ],
     },
   },
   {
@@ -770,6 +856,13 @@ const AnimalsData: AnimalData[] = [
         "Fundación dedicada al rescate y rehabilitación de gatos callejeros en Medellín.",
       email: "info@patitasfelices.org",
       phone: "+57 311 456 7890",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/patitasfelices",
+        },
+        
+      ],
     },
   },
   {
@@ -815,6 +908,13 @@ const AnimalsData: AnimalData[] = [
         "Organización dedicada al rescate y rehabilitación de perros en situación de calle y maltrato en Cali.",
       email: "contacto@amigospeludos.org",
       phone: "+57 322 789 0123",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/amigospeludos",
+        },
+        
+      ],
     },
   },
   {
@@ -860,6 +960,13 @@ const AnimalsData: AnimalData[] = [
         "Rescatamos y damos en adopción animales en situación de calle en Bogotá.",
       email: "contacto@huellitasdeamor.org",
       phone: "+57 300 123 4567",
+      contact: [
+        {
+          socialMedia: "Facebook",
+          url: "https://www.facebook.com/huellitasdeamor",
+        },
+        
+      ],
     },
   },
 ];
