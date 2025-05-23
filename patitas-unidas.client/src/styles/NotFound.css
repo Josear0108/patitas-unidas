@@ -1,15 +1,17 @@
 .not-found {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 2rem;
+  align-items: start!important;
+  min-height: 0!important;
+  padding: 2rem 2rem 0 2rem;
   background-color: var(--color-background-light);
+  position: relative;
 }
 
 .not-found-content {
-  max-width: 500px;
+  /*margin-top: 3rem;*/
+  /* max-width: 500px; */
   text-align: center;
+  margin-bottom: 80px;
 }
 
 .not-found-content i {
@@ -25,4 +27,38 @@
 .not-found-content p {
   margin-bottom: 2rem;
   color: var(--color-text-light);
+}
+
+.paw-prints {
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+  pointer-events: none;
+}
+
+.paw-print {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  opacity: 0.7;
+  animation: pawWalk 2s linear infinite;
+}
+
+.paw-print:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.paw-print:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.paw-print:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+@keyframes pawWalk {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  20% { opacity: 1; }
+  50% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.7; }
 }
