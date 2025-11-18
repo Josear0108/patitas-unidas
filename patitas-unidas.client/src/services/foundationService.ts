@@ -1,6 +1,7 @@
 import { Foundation } from "../types/foundation";
+import { apiCall } from "../config/api";
 
-// Mock de fundaciones
+// Mock de fundaciones (mantenido como fallback)
 const FOUNDATIONS: Foundation[] = [
   {
     id: 1,
@@ -65,14 +66,29 @@ const FOUNDATIONS: Foundation[] = [
 ];
 
 export const foundationService = {
+  /**
+   * Obtiene todas las fundaciones
+   */
   getFoundations: async (): Promise<Foundation[]> => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(FOUNDATIONS), 500);
-    });
+    try {
+      return await apiCall<Foundation[]>('/foundations');
+    } catch (error) {
+      console.error('Error fetching foundations:', error);
+      // Fallback a datos mock en caso de error
+      return FOUNDATIONS;
+    }
   },
+
+  /**
+   * Obtiene una fundación por su ID
+   */
   getFoundationById: async (id: number): Promise<Foundation | undefined> => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(FOUNDATIONS.find(f => f.id === id)), 500);
-    });
+    try {
+      return await apiCall<Foundation>(`/foundations/${id}`);
+    } catch (error) {
+      console.error('Error fetching foundation by id:', error);
+      // Fallback a datos mock en caso de error
+      return FOUNDATIONS.find(f => f.id === id);
+    }
   }
 }; 

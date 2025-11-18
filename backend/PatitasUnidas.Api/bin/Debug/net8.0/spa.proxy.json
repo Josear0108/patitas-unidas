@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:60502",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\jhernandez\\source\\repos\\patitas-unidas\\backend\\PatitasUnidas.Api\\..\\..\\patitas-unidas.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

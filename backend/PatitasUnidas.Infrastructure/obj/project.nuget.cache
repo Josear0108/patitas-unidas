@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "C2vrPZu9JjM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jhernandez\\source\\repos\\patitas-unidas\\backend\\PatitasUnidas.Infrastructure\\PatitasUnidas.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jhernandez\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
+    "C:\\Users\\jhernandez\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\jhernandez\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\jhernandez\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

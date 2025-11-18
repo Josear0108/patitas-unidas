@@ -1,6 +1,7 @@
 import { Animal, AnimalData } from "../types/animal";
+import { apiCall } from "../config/api";
 
-// Datos quemados simulando respuesta de API
+// Datos quemados simulando respuesta de API (mantenidos como fallback)
 const ANIMALES: Animal[] = [
   {
     id: 1,
@@ -972,35 +973,88 @@ const AnimalsData: AnimalData[] = [
 ];
 
 export const animalService = {
+  /**
+   * Obtiene todos los animales (versión básica)
+   */
   getAnimales: async (): Promise<Animal[]> => {
-    // Simula una llamada a API con un pequeño retardo
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(ANIMALES), 500);
-    });
+    try {
+      const animals = await apiCall<AnimalData[]>('/animals');
+      // Mapear AnimalData a Animal para compatibilidad
+      return animals.map(animal => ({
+        id: animal.id,
+        name: animal.name,
+        type: animal.type,
+        age: animal.age,
+        description: animal.description,
+        image: animal.image,
+        state: animal.state,
+        tag: animal.tag,
+        fundacionId: animal.fundacionId,
+      }));
+    } catch (error) {
+      console.error('Error fetching animals:', error);
+      // Fallback a datos mock en caso de error
+      return ANIMALES;
+    }
   },
+
+  /**
+   * Obtiene animales disponibles para apadrinamiento
+   */
   getApadrinables: async (): Promise<Animal[]> => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(ANIMALES_APADRINAMIENTO), 500);
-    });
+    try {
+      const animals = await apiCall<AnimalData[]>('/animals/apadrinables');
+      return animals.map(animal => ({
+        id: animal.id,
+        name: animal.name,
+        type: animal.type,
+        age: animal.age,
+        description: animal.description,
+        image: animal.image,
+        state: animal.state,
+        tag: animal.tag,
+        fundacionId: animal.fundacionId,
+      }));
+    } catch (error) {
+      console.error('Error fetching apadrinables:', error);
+      return ANIMALES_APADRINAMIENTO;
+    }
   },
+
+  /**
+   * Obtiene animales por fundación
+   */
   getAnimalesPorFundacion: async (fundacionId: number): Promise<Animal[]> => {
-    return new Promise((resolve) => {
-      setTimeout(
-        () => resolve(ANIMALES.filter((a) => a.fundacionId === fundacionId)),
-        500
-      );
-    });
+    try {
+      const animals = await apiCall<AnimalData[]>(`/animals/foundation/${fundacionId}`);
+      return animals.map(animal => ({
+        id: animal.id,
+        name: animal.name,
+        type: animal.type,
+        age: animal.age,
+        description: animal.description,
+        image: animal.image,
+        state: animal.state,
+        tag: animal.tag,
+        fundacionId: animal.fundacionId,
+      }));
+    } catch (error) {
+      console.error('Error fetching animals by foundation:', error);
+      return ANIMALES.filter((a) => a.fundacionId === fundacionId);
+    }
   },
 
   /**
    * Retrieves a list of all animals with their detailed information.
    * @returns {Promise<AnimalData[]>} A promise that resolves to an array of AnimalData objects.
-   * @note Currently using mock data with a 500ms delay
    */
   getAnimals: async (): Promise<AnimalData[]> => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(AnimalsData), 500);
-    });
+    try {
+      return await apiCall<AnimalData[]>('/animals');
+    } catch (error) {
+      console.error('Error fetching animals data:', error);
+      return AnimalsData;
+    }
   },
 
   /**
@@ -1008,17 +1062,17 @@ export const animalService = {
    * @param {number} animalId - The unique identifier of the animal
    * @returns {Promise<AnimalData>} A promise that resolves to the animal's detailed data
    * @throws {Error} If the animal is not found
-   * @note Currently using mock data with a 500ms delay
    */
   getAnimalData: async (animalId: number): Promise<AnimalData> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const animal = AnimalsData.find((a) => a.id === animalId);
-        if (!animal) {
-          reject(new Error("Animal not found"));
-        }
-        resolve(animal!);
-      }, 500);
-    });
+    try {
+      return await apiCall<AnimalData>(`/animals/${animalId}`);
+    } catch (error) {
+      console.error('Error fetching animal data:', error);
+      const animal = AnimalsData.find((a) => a.id === animalId);
+      if (!animal) {
+        throw new Error("Animal not found");
+      }
+      return animal;
+    }
   },
 };
