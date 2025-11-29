@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { AnimalData } from "../types/animal";
-import { animalService } from "../services/animalService";
-import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
+import { animalService } from "../api/animals";
+import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { useNavigate } from "react-router-dom";
-import "../styles/Animal-modal.css";
+import "../styles/AnimalModal.css";
 
 interface AnimalDetailModalProps {
   isOpen: boolean;

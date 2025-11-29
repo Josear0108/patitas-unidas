@@ -3,14 +3,12 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import "../styles/Home.css"
 import { useEffect, useMemo, useState } from "react";
-import { animalService } from "../services/animalService";
-import { Animal } from "../types/animal";
+import { animalService, Animal, AnimalCard } from "@/features/animals";
 import { foundationService } from "../services/foundationService";
 import { Foundation } from "../types/foundation";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import AnimalCard from "../components/AnimalCard";
 import FoundationCard from "../components/FoundationCard";
 import ContactModal from "../components/ContactModal";
 

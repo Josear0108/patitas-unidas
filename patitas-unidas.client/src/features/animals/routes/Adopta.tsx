@@ -1,11 +1,12 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import AnimalDetailModal from "../components/AnimalDetailModal";
 import AnimalCard from "../components/AnimalCard";
-import { useEffect, useState } from "react";
-import { animalService } from "../services/animalService";
+import { animalService } from "../api/animals";
 import { AnimalData } from "../types/animal";
-import { useNavigate, useParams } from "react-router-dom";
+import "../styles/Adopta.css";
 
 export default function Adopta() {
   const { id } = useParams<{ id?: string }>()

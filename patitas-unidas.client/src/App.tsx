@@ -1,5 +1,5 @@
 import Home from "../src/pages/Home"
-import Adopta from "../src/pages/Adopta"
+import { Adopta } from "@/features/animals"
 import Dona from "../src/pages/Dona"
 import Voluntario from "../src/pages/Voluntario"
 import NotFound from "../src/pages/NotFound"

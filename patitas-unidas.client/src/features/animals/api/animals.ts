@@ -1,5 +1,5 @@
 import { Animal, AnimalData } from "../types/animal";
-import { apiCall } from "../config/api";
+import { apiCall } from "@/config/api";
 
 // Datos quemados simulando respuesta de API (mantenidos como fallback)
 const ANIMALES: Animal[] = [

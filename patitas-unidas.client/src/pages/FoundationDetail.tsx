@@ -3,13 +3,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/FoundationDetail.css";
 import { useEffect, useState } from "react";
-import { Animal } from "../types/animal";
-import { animalService } from "../services/animalService";
+import { Animal, animalService, AnimalCard, AnimalDetailModal } from "@/features/animals";
 import { foundationService } from "../services/foundationService";
 import { Foundation } from "../types/foundation";
 import ContactModal from "../components/ContactModal";
-import AnimalCard from "../components/AnimalCard";
-import AnimalDetailModal from "../components/AnimalDetailModal";
 
 export default function FoundationDetail() {
   const { id } = useParams();
