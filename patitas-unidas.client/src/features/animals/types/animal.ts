@@ -1,4 +1,4 @@
-import { Foundation } from "@/types/foundation";
+import type { Foundation } from "@/features/foundations";
 
 export interface Animal {
   id: number;

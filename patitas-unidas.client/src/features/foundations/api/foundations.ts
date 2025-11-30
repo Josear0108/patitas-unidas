@@ -1,5 +1,5 @@
-import { Foundation } from "../types/foundation";
-import { apiCall } from "../config/api";
+import type { Foundation } from "../types/foundation";
+import { apiCall } from "@/config/api";
 
 // Mock de fundaciones (mantenido como fallback)
 const FOUNDATIONS: Foundation[] = [

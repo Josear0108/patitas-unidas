@@ -1,11 +1,11 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import "../styles/Foundations.css"
 import { useEffect, useState } from "react";
-import { foundationService } from "../services/foundationService";
-import { Foundation } from "../types/foundation";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { foundationService } from "../api/foundations";
+import type { Foundation } from "../types/foundation";
 import ContactModal from "../components/ContactModal";
 import FoundationCard from "../components/FoundationCard";
+import "../styles/Foundations.css";
 
 export default function FoundationList() {
   const [foundation, setFoundation] = useState<Foundation[]>([]);

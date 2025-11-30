@@ -1,16 +1,13 @@
 import { Link, useNavigate } from "react-router-dom"
+import { useEffect, useMemo, useState } from "react";
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import "../styles/Home.css"
-import { useEffect, useMemo, useState } from "react";
 import { animalService, Animal, AnimalCard } from "@/features/animals";
-import { foundationService } from "../services/foundationService";
-import { Foundation } from "../types/foundation";
+import { foundationService, Foundation, FoundationCard, ContactModal } from "@/features/foundations";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import FoundationCard from "../components/FoundationCard";
-import ContactModal from "../components/ContactModal";
+import "../styles/Home.css";
 
 export default function Home() {
   const [animals, setAnimals] = useState<Animal[]>([]);

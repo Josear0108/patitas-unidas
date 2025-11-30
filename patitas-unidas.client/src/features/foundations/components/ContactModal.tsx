@@ -1,7 +1,7 @@
 import React from "react";
 import { FaInstagram, FaWhatsapp, FaFacebook, FaEnvelope, FaTimes } from "react-icons/fa";
+import type { Contact } from "../types/foundation";
 import "../styles/ContactModal.css";
-import { Contact } from "../types/foundation";
 
 interface ContactModalProps {
   socialMedia: Contact[];
