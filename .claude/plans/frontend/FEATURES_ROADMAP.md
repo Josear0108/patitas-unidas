@@ -7,17 +7,17 @@
 │  ESTADO GLOBAL DE MIGRACIÓN                                │
 ├────────────────────────────────────────────────────────────┤
 │  Total Features: 7                                         │
-│  ✅ Migradas: 2                                            │
+│  ✅ Migradas: 4                                            │
 │  🔄 En progreso: 0                                         │
-│  ⏳ Pendientes: 5                                          │
+│  ⏳ Pendientes: 3                                          │
 │  ───────────────────────────────────────────────────────   │
-│  Progreso: █████░░░░░░░░░░░░░░░░░░ 29%                     │
+│  Progreso: ███████████░░░░░░░░░ 57%                        │
 └────────────────────────────────────────────────────────────┘
 ```
 
 **Última actualización:** 2025-11-30
-**Features completadas:** animals ✅, foundations ✅
-**Próxima feature:** donations (BAJA PRIORIDAD)
+**Features completadas:** animals ✅, foundations ✅, donations ✅, volunteers ✅
+**Próxima feature:** home (BAJA PRIORIDAD)
 
 ---
 
@@ -231,7 +231,7 @@ features/foundations/
 
 ## 3. Feature: donations (Donaciones)
 
-### Estado: ⏳ PENDIENTE
+### Estado: ✅ COMPLETADA
 
 ### Información General
 
@@ -281,24 +281,29 @@ features/donations/
 
 ### Checklist de Migración
 
-- [ ] Crear estructura
-- [ ] Crear barrel export
-- [ ] Mover archivos
-- [ ] Actualizar imports
-- [ ] Compilar
-- [ ] Testing: `/dona` muestra mantenimiento
-- [ ] Commit
+- [x] Crear estructura
+- [x] Crear barrel export
+- [x] Mover archivos
+- [x] Actualizar imports
+- [x] Compilar
+- [x] Testing: `/dona` muestra mantenimiento
+- [x] Commit
 
 ### Notas Especiales
 
 - ✅ Feature incompleta - solo muestra página de mantenimiento
 - ✅ Ideal para ganar confianza (muy simple)
+- ✅ Migración completada exitosamente - 4 archivos migrados
+- ✅ Se eliminó export de Maintenance de src/components/index.ts ya que ahora es específico de donations
+
+**Commit:** `5ea6918` - 2025-11-30
+**Archivos migrados:** 4 (3 movidos + 1 barrel export nuevo)
 
 ---
 
 ## 4. Feature: volunteers (Voluntarios)
 
-### Estado: ⏳ PENDIENTE
+### Estado: ✅ COMPLETADA
 
 ### Información General
 
@@ -348,13 +353,23 @@ features/volunteers/
 
 ### Checklist de Migración
 
-- [ ] Crear estructura
-- [ ] Crear barrel export
-- [ ] Mover archivos
-- [ ] Actualizar imports
-- [ ] Compilar
-- [ ] Testing: `/voluntario` funciona
-- [ ] Commit
+- [x] Crear estructura
+- [x] Crear barrel export
+- [x] Mover archivos
+- [x] Actualizar imports
+- [x] Compilar
+- [x] Testing: `/voluntario` funciona
+- [x] Commit
+
+### Notas Especiales
+
+- ✅ Feature con formulario de voluntarios funcional
+- ✅ Incluye API service para manejo de opciones y datos
+- ✅ Migración completada exitosamente - 4 archivos migrados
+- ✅ Exports de tipos incluidos en barrel export
+
+**Commit:** `7f4921b` - 2025-11-30
+**Archivos migrados:** 4 (3 movidos + 1 barrel export nuevo)
 
 ---
 
@@ -608,25 +623,25 @@ hooks/
 |---------|----------|----------|----------|
 | animals | 8 | 8 | ██████████ 100% ✅ |
 | foundations | 10 | 10 | ██████████ 100% ✅ |
-| donations | 4 | 0 | ░░░░░░░░░░ 0% ⬅️ SIGUIENTE |
-| volunteers | 4 | 0 | ░░░░░░░░░░ 0% |
-| home | 3 | 0 | ░░░░░░░░░░ 0% |
+| donations | 4 | 4 | ██████████ 100% ✅ |
+| volunteers | 4 | 4 | ██████████ 100% ✅ |
+| home | 3 | 0 | ░░░░░░░░░░ 0% ⬅️ SIGUIENTE |
 | shared-components | 9 | 0 | ░░░░░░░░░░ 0% |
 | shared-hooks | 2 | 0 | ░░░░░░░░░░ 0% |
-| **TOTAL** | **40** | **18** | ████░░░░░░ **45%** |
+| **TOTAL** | **40** | **26** | ██████░░░░ **65%** |
 
 ### Por Tipo de Archivo
 
 | Tipo | Total | Migrados | Progreso |
 |------|-------|----------|----------|
-| Components | 9 | 4 | 44% |
-| Routes | 8 | 3 | 38% |
-| API/Services | 3 | 2 | 67% |
+| Components | 9 | 5 | 56% |
+| Routes | 8 | 5 | 63% |
+| API/Services | 3 | 3 | 100% ✅ |
 | Types | 2 | 2 | 100% ✅ |
-| Styles | 15 | 5 | 33% |
+| Styles | 15 | 7 | 47% |
 | Hooks | 1 | 0 | 0% |
 | Config | 0 | 0 | - |
-| Barrel Exports | 7 | 2 | 29% |
+| Barrel Exports | 7 | 4 | 57% |
 
 ---
 
@@ -637,6 +652,8 @@ hooks/
 | 2025-11-29 | - | Roadmap creado | - | Preparación inicial |
 | 2025-11-29 | animals | ✅ Migración completada | 596d53e | Feature piloto - 8 archivos migrados exitosamente |
 | 2025-11-30 | foundations | ✅ Migración completada | 311641d | 10 archivos migrados - imports actualizados en App.tsx y Home.tsx |
+| 2025-11-30 | donations | ✅ Migración completada | 5ea6918 | 4 archivos migrados - eliminado export de Maintenance de src/components/index.ts |
+| 2025-11-30 | volunteers | ✅ Migración completada | 7f4921b | 4 archivos migrados - incluye API service y formulario de voluntarios |
 
 ---
 
@@ -648,10 +665,13 @@ hooks/
 4. ✅ Crear branch: `git checkout -b refactor/client`
 5. ✅ Ejecutar migración de **animals** (piloto)
 6. ✅ Validar y ajustar proceso según aprendizajes
-7. 🔄 **SIGUIENTE:** Ejecutar migración de **foundations**
+7. ✅ Ejecutar migración de **foundations**
+8. ✅ Ejecutar migración de **donations**
+9. ✅ Ejecutar migración de **volunteers**
+10. 🔄 **SIGUIENTE:** Ejecutar migración de **home**
 
 ---
 
 **Última actualización:** 2025-11-30
-**Estado:** 🔄 En progreso - 2/7 features completadas (29%)
-**Próxima acción:** Ejecutar Fase 3 - Migración de feature "donations"
+**Estado:** 🔄 En progreso - 4/7 features completadas (57%)
+**Próxima acción:** Ejecutar Fase 3 (cont.) - Migración de feature "home"
