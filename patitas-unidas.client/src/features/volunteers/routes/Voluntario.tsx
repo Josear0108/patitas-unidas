@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import "/src/styles/Voluntario.css"
-import { voluntarioService, OpcionVoluntariado } from "../services/voluntarioService";
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
+import "../styles/Voluntario.css"
+import { voluntarioService, OpcionVoluntariado } from "../api/volunteers";
 
 export default function Voluntario() {
   const [opciones, setOpciones] = useState<OpcionVoluntariado[]>([]);
