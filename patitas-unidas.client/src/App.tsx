@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import Home from "../src/pages/Home"
 import { Adopta } from "@/features/animals"
 import { Foundations, FoundationDetail } from "@/features/foundations"
-import Dona from "../src/pages/Dona"
+import { Dona } from "@/features/donations"
 import Voluntario from "../src/pages/Voluntario"
 import NotFound from "../src/pages/NotFound"
+import { WelcomeModal } from "@/components"
+import { useWelcomeModal } from "@/hooks"
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -16,9 +18,12 @@ function ScrollToTop() {
 }
 
 function App() {
+  const { isOpen, closeModal } = useWelcomeModal();
+
   return (
     <>
       <ScrollToTop />
+      <WelcomeModal isOpen={isOpen} onClose={closeModal} />
       <Routes>
         <Route path="/patitas-unidas" element={<Home />} />
         <Route path="/adopta" element={<Adopta />} />
