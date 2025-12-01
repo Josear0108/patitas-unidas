@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimalData } from "../types/animal";
 import { animalService } from "../api/animals";
-import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
+import { useLockBodyScroll } from "@/hooks";
 import { useNavigate } from "react-router-dom";
 import "../styles/AnimalModal.css";
 
