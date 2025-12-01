@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom"
 import { useEffect } from "react";
-import Home from "../src/pages/Home"
+import { Home } from "@/features/home"
 import { Adopta } from "@/features/animals"
 import { Foundations, FoundationDetail } from "@/features/foundations"
 import { Dona } from "@/features/donations"

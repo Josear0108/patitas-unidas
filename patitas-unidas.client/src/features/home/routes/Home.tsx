@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useMemo, useState } from "react";
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import Header from "../../../components/Header"
+import Footer from "../../../components/Footer"
 import { animalService, Animal, AnimalCard } from "@/features/animals";
 import { foundationService, Foundation, FoundationCard, ContactModal } from "@/features/foundations";
 import Slider from "react-slick";
