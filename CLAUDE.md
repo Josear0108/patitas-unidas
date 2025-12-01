@@ -332,47 +332,71 @@ OR animal.Tag?.Contains("Especial|Tratamiento|Medicamentos|Fisioterapia")
 
 ### Estructura de Proyecto React
 
+⚠️ **IMPORTANTE:** El proyecto ha sido migrado a **Bulletproof React Architecture** (feature-based organization).
+
 ```
 patitas-unidas.client/
 ├── public/                    # Assets estáticos
 ├── src/
-│   ├── assets/               # Imágenes, íconos
-│   ├── components/           # Componentes reutilizables
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── AnimalCard.tsx
-│   │   ├── AnimalDetailModal.tsx
-│   │   ├── FoundationCard.tsx
-│   │   ├── ContactModal.tsx
-│   │   └── Maintenance.tsx
-│   ├── pages/                # Páginas (rutas)
-│   │   ├── Home.tsx
-│   │   ├── Adopta.tsx
-│   │   ├── Dona.tsx
-│   │   ├── Voluntario.tsx
-│   │   ├── Foundations.tsx
-│   │   ├── FoundationDetail.tsx
-│   │   └── NotFound.tsx
-│   ├── services/             # Lógica de API
-│   │   ├── animalService.ts
-│   │   ├── foundationService.ts
-│   │   └── voluntarioService.ts
-│   ├── types/                # TypeScript interfaces
-│   │   ├── animal.ts
-│   │   └── foundation.ts
-│   ├── config/               # Configuración
+│   ├── features/              # 🎯 Feature-based organization (CORE)
+│   │   ├── animals/           # Feature: Adopción de animales
+│   │   │   ├── api/           # animals.ts
+│   │   │   ├── components/    # AnimalCard, AnimalDetailModal
+│   │   │   ├── routes/        # Adopta.tsx
+│   │   │   ├── types/         # animal.ts
+│   │   │   ├── styles/        # Adopta.css, AnimalModal.css
+│   │   │   └── index.ts       # Barrel export
+│   │   ├── foundations/       # Feature: Fundaciones
+│   │   │   ├── api/           # foundations.ts
+│   │   │   ├── components/    # FoundationCard, ContactModal
+│   │   │   ├── routes/        # Foundations.tsx, FoundationDetail.tsx
+│   │   │   ├── types/         # foundation.ts
+│   │   │   ├── styles/        # Foundations.css, etc.
+│   │   │   └── index.ts
+│   │   ├── donations/         # Feature: Donaciones
+│   │   │   ├── components/    # Maintenance.tsx
+│   │   │   ├── routes/        # Dona.tsx
+│   │   │   ├── styles/        # Dona.css
+│   │   │   └── index.ts
+│   │   ├── volunteers/        # Feature: Voluntarios
+│   │   │   ├── api/           # volunteers.ts
+│   │   │   ├── routes/        # Voluntario.tsx
+│   │   │   ├── styles/        # Voluntario.css
+│   │   │   └── index.ts
+│   │   └── home/              # Feature: Home
+│   │       ├── routes/        # Home.tsx
+│   │       ├── styles/        # Home.css
+│   │       └── index.ts
+│   ├── components/            # ♻️ Shared components ONLY
+│   │   ├── layout/            # Header, Footer
+│   │   ├── errors/            # NotFound
+│   │   ├── ui/                # CountUp, WelcomeModal
+│   │   └── index.ts
+│   ├── hooks/                 # 🪝 Custom hooks compartidos
+│   │   ├── useLockBodyScroll.ts
+│   │   ├── useWelcomeModal.ts
+│   │   └── index.ts
+│   ├── config/                # ⚙️ Configuración global
 │   │   └── api.ts
-│   ├── hooks/                # Custom hooks
-│   │   └── useLockBodyScroll.ts
-│   ├── styles/               # CSS modules/files
-│   ├── App.tsx               # Configuración de rutas
-│   ├── main.tsx              # Entry point
+│   ├── styles/                # 🎨 Estilos globales ONLY
+│   │   ├── global.css
+│   │   └── index.css
+│   ├── assets/                # 📸 Recursos estáticos
+│   ├── App.tsx                # Configuración de rutas
+│   ├── main.tsx               # Entry point
 │   └── vite-env.d.ts
 ├── package.json
-├── vite.config.ts            # Vite configuration
-├── tsconfig.json             # TypeScript config
-└── ARQUITECTURA.md           # Convenciones del proyecto
+├── vite.config.ts             # Vite configuration (+ path aliases)
+├── tsconfig.app.json          # TypeScript config (+ path aliases)
+└── ARQUITECTURA.md            # Convenciones Bulletproof (ACTUALIZADO)
 ```
+
+**Path Aliases configurados:**
+- `@/*` → `./src/*`
+- `@features/*` → `./src/features/*`
+- `@components/*` → `./src/components/*`
+- `@hooks/*` → `./src/hooks/*`
+- `@config/*` → `./src/config/*`
 
 ### Routes (defined in App.tsx)
 
