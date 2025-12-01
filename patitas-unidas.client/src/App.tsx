@@ -5,8 +5,7 @@ import { Adopta } from "@/features/animals"
 import { Foundations, FoundationDetail } from "@/features/foundations"
 import { Dona } from "@/features/donations"
 import { Voluntario } from "@/features/volunteers"
-import NotFound from "../src/pages/NotFound"
-import { WelcomeModal } from "@/components"
+import { NotFound, WelcomeModal } from "@/components"
 import { useWelcomeModal } from "@/hooks"
 
 function ScrollToTop() {

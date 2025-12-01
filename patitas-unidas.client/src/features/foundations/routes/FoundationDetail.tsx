@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { Header, Footer } from "@/components";
 import { Animal, animalService, AnimalCard, AnimalDetailModal } from "@/features/animals";
 import { foundationService } from "../api/foundations";
 import type { Foundation } from "../types/foundation";

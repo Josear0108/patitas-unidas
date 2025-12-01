@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "/src/styles/NotFound.css"
+import "@/components/errors/NotFound.css"
 
 export default function Maintenance() {
   return (

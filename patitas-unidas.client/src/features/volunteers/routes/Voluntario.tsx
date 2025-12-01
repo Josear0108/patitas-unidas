@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+import { Header, Footer } from "@/components"
 import "../styles/Voluntario.css"
 import { voluntarioService, OpcionVoluntariado } from "../api/volunteers";
 
