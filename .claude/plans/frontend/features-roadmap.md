@@ -691,8 +691,8 @@ hooks/
 ## Próximos Pasos
 
 1. ✅ Leer y entender este roadmap
-2. ✅ Revisar `.claude/plans/frontend/MIGRATION_PLAN.md`
-3. ✅ Revisar `.claude/architecture/BULLETPROOF_GUIDE.md`
+2. ✅ Revisar `.claude/plans/frontend/migration-plan.md`
+3. ✅ Revisar `.claude/architecture/frontend/bulletproof-guide.md`
 4. ✅ Crear branch: `git checkout -b refactor/client`
 5. ✅ Ejecutar migración de **animals** (piloto)
 6. ✅ Validar y ajustar proceso según aprendizajes
@@ -716,7 +716,7 @@ hooks/
 - [ ] Configurar alias de imports en `vite.config.ts`
 - [ ] Actualizar `tsconfig.json` paths
 - [ ] Revisar y optimizar barrel exports
-- [ ] Actualizar documentación (ARQUITECTURA.md, CLAUDE.md)
+- [ ] Actualizar documentación (architecture.md, CLAUDE.md)
 - [ ] Ejecutar linter: `npm run lint`
 - [ ] Fix de warnings si existen
 

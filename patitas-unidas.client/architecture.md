@@ -375,9 +375,9 @@ features/animals/
 
 ## Documentación Adicional
 
-- **Migration Plan:** `.claude/plans/frontend/MIGRATION_PLAN.md`
-- **Features Roadmap:** `.claude/plans/frontend/FEATURES_ROADMAP.md`
-- **Bulletproof Guide:** `.claude/architecture/BULLETPROOF_GUIDE.md`
+- **Migration Plan:** `.claude/plans/frontend/migration-plan.md`
+- **Features Roadmap:** `.claude/plans/frontend/features-roadmap.md`
+- **Bulletproof Guide:** `.claude/architecture/frontend/bulletproof-guide.md`
 - **Project Instructions:** `CLAUDE.md`
 
 ---

@@ -388,7 +388,7 @@ patitas-unidas.client/
 ├── package.json
 ├── vite.config.ts             # Vite configuration (+ path aliases)
 ├── tsconfig.app.json          # TypeScript config (+ path aliases)
-└── ARQUITECTURA.md            # Convenciones Bulletproof (ACTUALIZADO)
+└── architecture.md            # Convenciones Bulletproof (ACTUALIZADO)
 ```
 
 **Path Aliases configurados:**

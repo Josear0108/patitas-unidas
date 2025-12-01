@@ -17,7 +17,7 @@ Use este checklist para **validar** la migración de la feature volunteers a Bul
 
 - [x] Git working directory está limpio (`git status`)
 - [x] Estás en el branch correcto (`refactor/client`)
-- [x] Has leído `.claude/plans/frontend/MIGRATION_PLAN.md`
+- [x] Has leído `.claude/plans/frontend/migration-plan.md`
 - [x] Has identificado todos los archivos a migrar
 - [x] Has revisado dependencias con otras features (ninguna)
 
@@ -151,7 +151,7 @@ Use este checklist para **validar** la migración de la feature volunteers a Bul
 
 ## Documentation
 
-- [x] Actualizado `FEATURES_ROADMAP.md` - marcar feature como migrada
+- [x] Actualizado `features-roadmap.md` - marcar feature como migrada
   - Estado: ✅ COMPLETADA
   - Progreso global: 57% (4/7 features)
   - Métricas actualizadas

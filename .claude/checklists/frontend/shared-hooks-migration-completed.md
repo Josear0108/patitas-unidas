@@ -17,7 +17,7 @@ Use este checklist para **validar** cada migración de feature a Bulletproof arc
 
 - [x] Git working directory está limpio (`git status`)
 - [x] Estás en el branch correcto (`refactor/client`)
-- [x] Has leído `.claude/plans/frontend/MIGRATION_PLAN.md`
+- [x] Has leído `.claude/plans/frontend/migration-plan.md`
 - [x] Has identificado todos los archivos a migrar
 - [x] Has revisado dependencias con otras features
 
@@ -140,7 +140,7 @@ Use este checklist para **validar** cada migración de feature a Bulletproof arc
 
 ## Documentation
 
-- [x] Actualizado `FEATURES_ROADMAP.md` - marcar feature como migrada
+- [x] Actualizado `features-roadmap.md` - marcar feature como migrada
 - [x] Actualizada documentación interna si es necesario
 - [x] Agregados comentarios en código complejo (no fue necesario)
 
