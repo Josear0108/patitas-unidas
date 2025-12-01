@@ -629,7 +629,7 @@ Feature/
 
 ### Frontend (React + TypeScript)
 
-**⚠️ CRÍTICO - Naming Conventions (definido en ARQUITECTURA.md):**
+**⚠️ CRÍTICO - Naming Conventions (definido en `.claude/architecture/frontend/architecture.md`):**
 - Componentes: `PascalCase.tsx` (e.g., `Header.tsx`)
 - Pages: `PascalCase.tsx` (e.g., `Home.tsx`)
 - Services: `camelCase.ts` (e.g., `animalService.ts`)
@@ -999,7 +999,7 @@ Infrastructure (Data)   → Data Access, External Services
 2. Crear servicio en `patitas-unidas.client/src/services/`
 3. Crear componente/página en `patitas-unidas.client/src/components/` o `pages/`
 4. Agregar ruta en `App.tsx` si es página
-5. Seguir ESTRICTAMENTE las convenciones de `ARQUITECTURA.md`
+5. Seguir ESTRICTAMENTE las convenciones de `.claude/architecture/frontend/architecture.md`
 
 ### Para debugging:
 
@@ -1045,7 +1045,7 @@ Infrastructure (Data)   → Data Access, External Services
 
 ## CONCLUSIÓN
 
-La arquitectura de Patitas Unidas está bien diseñada siguiendo principios de Clean Architecture y CQRS en el backend, con una clara separación de responsabilidades. El frontend React sigue convenciones estrictas definidas en `ARQUITECTURA.md` y mantiene una estructura escalable.
+La arquitectura de Patitas Unidas está bien diseñada siguiendo principios de Clean Architecture y CQRS en el backend, con una clara separación de responsabilidades. El frontend React sigue convenciones estrictas definidas en `.claude/architecture/frontend/architecture.md` y mantiene una estructura escalable basada en Bulletproof React.
 
 **Fortalezas:**
 - ✅ Separación clara de capas

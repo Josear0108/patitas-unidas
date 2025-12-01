@@ -428,7 +428,7 @@ git commit -m "refactor(frontend): migrate foundations feature to Bulletproof ar
    ```
 
 4. ⬜ Revisar y optimizar barrel exports
-5. ⬜ Actualizar documentación (architecture.md, CLAUDE.md)
+5. ⬜ Actualizar documentación (.claude/architecture/frontend/architecture.md, CLAUDE.md)
 6. ⬜ Ejecutar linter: `npm run lint`
 7. ⬜ Fix de warnings si existen
 

@@ -716,7 +716,7 @@ hooks/
 - [ ] Configurar alias de imports en `vite.config.ts`
 - [ ] Actualizar `tsconfig.json` paths
 - [ ] Revisar y optimizar barrel exports
-- [ ] Actualizar documentación (architecture.md, CLAUDE.md)
+- [ ] Actualizar documentación (.claude/architecture/frontend/architecture.md, CLAUDE.md)
 - [ ] Ejecutar linter: `npm run lint`
 - [ ] Fix de warnings si existen
 
