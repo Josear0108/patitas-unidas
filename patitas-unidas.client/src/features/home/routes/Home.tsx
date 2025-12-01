@@ -196,49 +196,7 @@ export default function Home() {
             </Slider>
           </div>
         </section>
-
-        {/* Carrusel de Fundaciones
-        <section className="foundations-carousel">
-          <div className="container">
-            <div className="section-header with-action">
-              <h2>Fundaciones aliadas</h2>
-              <Link to="/foundations" className="button text">
-                Ver todas <i className="icon-arrow-right"></i>
-              </Link>
-            </div>
-            <Slider
-              dots={true}
-              infinite={foundations.length > 3}
-              speed={500}
-              slidesToShow={3}
-              slidesToScroll={1}
-              arrows={true}
-              autoplay={true}
-              pauseOnHover={true}
-              autoplaySpeed={7000}
-              responsive={[
-                {
-                  breakpoint: 900,
-                  settings: {
-                    slidesToShow: 1,
-                    arrows: true,
-                    dots: true,
-                    autoplay: true,
-                    pauseOnHover: true,
-                    autoplaySpeed: 7000,
-                  }
-                }
-              ]}
-            >
-              {foundations.map((f) => (
-                <div key={f.id}>
-                  <FoundationCard foundation={f} onContact={() => setOpenModal(f)} />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </section> */}
-
+        
         {/* Impacto Esperado */}
         <section className="impact">
           <div className="container">
