@@ -197,7 +197,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Carrusel de Fundaciones */}
+        {/* Carrusel de Fundaciones
         <section className="foundations-carousel">
           <div className="container">
             <div className="section-header with-action">
@@ -237,7 +237,7 @@ export default function Home() {
               ))}
             </Slider>
           </div>
-        </section>
+        </section> */}
 
         {/* Impacto Esperado */}
         <section className="impact">
