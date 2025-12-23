@@ -428,7 +428,7 @@ git commit -m "refactor(frontend): migrate foundations feature to Bulletproof ar
    ```
 
 4. ⬜ Revisar y optimizar barrel exports
-5. ⬜ Actualizar documentación (ARQUITECTURA.md, CLAUDE.md)
+5. ⬜ Actualizar documentación (.claude/architecture/frontend/architecture.md, CLAUDE.md)
 6. ⬜ Ejecutar linter: `npm run lint`
 7. ⬜ Fix de warnings si existen
 
@@ -769,8 +769,8 @@ npm run build
 
 - 📖 [Bulletproof React Documentation](https://github.com/alan2207/bulletproof-react)
 - 📖 [Feature-Sliced Design](https://feature-sliced.design/)
-- 📄 `.claude/architecture/BULLETPROOF_GUIDE.md` - Guía detallada
-- 📄 `.claude/architecture/NAMING_CONVENTIONS.md` - Convenciones
+- 📄 `.claude/architecture/frontend/bulletproof-guide.md` - Guía detallada
+- 📄 `.claude/architecture/frontend/naming-conventions.md` - Convenciones
 - 🔧 `.claude/scripts/migrate-feature.sh` - Script de migración
 - ✅ `.claude/checklists/feature-migration.md` - Checklist de validación
 

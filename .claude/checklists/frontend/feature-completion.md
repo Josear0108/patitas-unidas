@@ -290,7 +290,7 @@ Este checklist es más comprehensivo que el de migración y verifica calidad de 
 
 ### README / Docs
 
-- [ ] Feature documentada en FEATURES_ROADMAP.md
+- [ ] Feature documentada en features-roadmap.md
 - [ ] Casos de uso documentados
 - [ ] API endpoints documentados (si aplica)
 - [ ] Configuración documentada

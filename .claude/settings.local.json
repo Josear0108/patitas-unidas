@@ -8,7 +8,12 @@
       "Bash(git commit:*)",
       "Bash(tree:*)",
       "Bash(ls:*)",
-      "Bash(npm install:*)"
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm install)",
+      "Read(//c/Users/USER/Projects/patitas-unidas/**)",
+      "Read(//c/Users/USER/Projects/patitas-unidas/**)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
