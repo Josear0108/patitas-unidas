@@ -1,16 +1,27 @@
-// ============================================
-// PUBLIC API - EXPORTS
-// ============================================
+/**
+ * Animals Feature - Public API
+ *
+ * Export ONLY what other features need to use.
+ * Internal components stay private.
+ */
 
-// Components
-export { default as AnimalCard } from './components/AnimalCard';
-export { default as AnimalDetailModal } from './components/AnimalDetailModal';
+// Routes (Pages)
+export { AnimalListPage } from './routes/AnimalListPage';
+export { AnimalDetailPage } from './routes/AnimalDetailPage';
 
-// Routes
-export { default as Adopta } from './routes/Adopta';
-
-// API
-export { animalService } from './api/animals';
+// Services
+export { animalsService } from './api/animalsService';
 
 // Types
-export type { Animal, AnimalData } from './types/animal';
+export type {
+  Animal,
+  AnimalType,
+  AnimalSize,
+  AnimalGender,
+  AnimalFilters,
+  HealthStatus,
+  AnimalFoundation,
+} from './types/animal';
+
+// Public components (if needed by other features)
+export { AnimalCard } from './components/AnimalCard';

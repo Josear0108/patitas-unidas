@@ -1,13 +1,22 @@
-// Components
-export { default as FoundationCard } from './components/FoundationCard';
-export { default as ContactModal } from './components/ContactModal';
+/**
+ * Foundations Feature - Public API
+ */
 
 // Routes
-export { default as Foundations } from './routes/Foundations';
-export { default as FoundationDetail } from './routes/FoundationDetail';
+export { FoundationListPage } from './routes/FoundationListPage';
+export { FoundationDetailPage } from './routes/FoundationDetailPage';
 
-// API
-export { foundationService } from './api/foundations';
+// Services
+export { foundationsService } from './api/foundationsService';
 
 // Types
-export type { Foundation, Contact } from './types/foundation';
+export type {
+  Foundation,
+  FoundationStats,
+  ContactInfo,
+  FoundationAnimal,
+  Campaign,
+} from './types/foundation';
+
+// Public components
+export { FoundationCard } from './components/FoundationCard';
