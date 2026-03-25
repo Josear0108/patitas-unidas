@@ -1,0 +1,239 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model animal_photos {
+  id         String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  animal_id  String  @db.Uuid
+  url        String
+  is_primary Boolean @default(false)
+  order      Int     @default(0)
+  animals    animals @relation(fields: [animal_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([animal_id, is_primary], map: "idx_animal_photos_animal_id_is_primary")
+}
+
+model animal_traits {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  animal_id   String     @db.Uuid
+  type        trait_type
+  description String
+  animals     animals    @relation(fields: [animal_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([animal_id], map: "idx_animals_traits_animal_id")
+  @@index([type, description], map: "idx_animals_traits_type_description")
+}
+
+model animals {
+  id              String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  foundation_id   String          @db.Uuid
+  name            String          @db.VarChar(255)
+  type            animal_type
+  breed           String?         @db.VarChar(255)
+  birth_date      DateTime?       @db.Timestamp(6)
+  size            animal_size?
+  weight          Decimal?        @db.Decimal(5, 2)
+  gender          animal_gender
+  description     String?
+  city            String?         @db.VarChar(255)
+  neighborhood    String?         @db.VarChar(255)
+  status          animal_status   @default(AVAILABLE)
+  is_urgent       Boolean         @default(false)
+  rescued_at      DateTime?       @db.Timestamp(6)
+  is_vaccinated   Boolean         @default(false)
+  is_neutered     Boolean         @default(false)
+  is_dewormed     Boolean         @default(false)
+  has_microchip   Boolean         @default(false)
+  last_checkup_at DateTime?       @db.Timestamp(6)
+  created_at      DateTime        @default(now()) @db.Timestamp(6)
+  updated_at      DateTime        @default(now()) @db.Timestamp(6)
+  animal_photos   animal_photos[]
+  animal_traits   animal_traits[]
+  foundations     foundations     @relation(fields: [foundation_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  campaigns       campaigns[]
+
+  @@index([foundation_id], map: "idx_animals_foundation_id")
+  @@index([is_urgent], map: "idx_animals_is_urgent")
+  @@index([status], map: "idx_animals_status")
+  @@index([status, is_urgent], map: "idx_animals_status_urgent")
+  @@index([type], map: "idx_animals_type")
+}
+
+model campaign_rewards {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  campaign_id    String    @db.Uuid
+  minimum_amount Decimal   @db.Decimal(10, 2)
+  title          String    @db.VarChar(255)
+  description    String
+  campaigns      campaigns @relation(fields: [campaign_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([campaign_id], map: "idx_campaign_rewards_campaign_id")
+}
+
+model campaign_updates {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  campaign_id String    @db.Uuid
+  content     String
+  created_at  DateTime  @default(now()) @db.Timestamp(6)
+  campaigns   campaigns @relation(fields: [campaign_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([campaign_id], map: "idx_campaign_updates_campaign_id")
+}
+
+model campaigns {
+  id               String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  foundation_id    String             @db.Uuid
+  animal_id        String?            @db.Uuid
+  title            String             @db.VarChar(255)
+  description      String?
+  image_url        String?
+  type             campaign_type
+  is_urgent        Boolean            @default(false)
+  status           campaign_status    @default(ACTIVE)
+  goal_amount      Decimal?           @db.Decimal(10, 2)
+  raised_amount    Decimal            @default(0) @db.Decimal(10, 2)
+  currency         String             @default("USD") @db.VarChar(10)
+  donor_count      Int                @default(0)
+  start_date       DateTime           @default(now()) @db.Timestamp(6)
+  end_date         DateTime?          @db.Timestamp(6)
+  created_at       DateTime           @default(now()) @db.Timestamp(6)
+  updated_at       DateTime           @default(now()) @db.Timestamp(6)
+  slug             String             @unique @db.VarChar(255)
+  campaign_rewards campaign_rewards[]
+  campaign_updates campaign_updates[]
+  animals          animals?           @relation(fields: [animal_id], references: [id], onUpdate: NoAction)
+  foundations      foundations        @relation(fields: [foundation_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  donations        donations[]
+
+  @@index([animal_id], map: "idx_campaigns_animal_id")
+  @@index([foundation_id], map: "idx_campaigns_foundation_id")
+  @@index([status], map: "idx_campaigns_status")
+}
+
+model donations {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  campaign_id String    @db.Uuid
+  donor_name  String    @db.VarChar(255)
+  amount      Decimal   @db.Decimal(10, 2)
+  currency    String    @default("USD") @db.VarChar(10)
+  created_at  DateTime  @default(now()) @db.Timestamp(6)
+  campaigns   campaigns @relation(fields: [campaign_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([campaign_id], map: "idx_donations_campaign_id")
+}
+
+model foundation_achievements {
+  id            String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  foundation_id String      @db.Uuid
+  description   String
+  created_at    DateTime    @default(now()) @db.Timestamp(6)
+  foundations   foundations @relation(fields: [foundation_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([foundation_id], map: "idx_foundation_achievements_foundation_id")
+}
+
+model foundations {
+  id                      String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                    String                    @db.VarChar(255)
+  slug                    String                    @unique @db.VarChar(255)
+  tagline                 String?                   @db.VarChar(255)
+  description             String?
+  mission                 String?
+  vision                  String?
+  founded_at              DateTime?                 @db.Timestamp(6)
+  logo_url                String?
+  banner_url              String?
+  city                    String?                   @db.VarChar(255)
+  country                 String                    @default("Colombia") @db.VarChar(255)
+  phone                   String?                   @db.VarChar(50)
+  email                   String?                   @db.VarChar(255)
+  website                 String?                   @db.VarChar(255)
+  is_verified             Boolean                   @default(false)
+  status                  foundation_status         @default(DRAFT)
+  created_at              DateTime                  @default(now()) @db.Timestamp(6)
+  updated_at              DateTime                  @default(now()) @db.Timestamp(6)
+  animals                 animals[]
+  campaigns               campaigns[]
+  foundation_achievements foundation_achievements[]
+  users                   users[]
+
+  @@index([slug], map: "idx_foundations_slug")
+  @@index([status], map: "idx_foundations_status")
+}
+
+model users {
+  id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email         String       @unique @db.VarChar(255)
+  google_id     String       @unique @db.VarChar(255)
+  name          String       @db.VarChar(255)
+  avatar_url    String?
+  role          role         @default(FOUNDATION_ADMIN)
+  foundation_id String?      @db.Uuid
+  created_at    DateTime     @default(now()) @db.Timestamp(6)
+  updated_at    DateTime     @default(now()) @db.Timestamp(6)
+  foundations   foundations? @relation(fields: [foundation_id], references: [id], onUpdate: NoAction)
+
+  @@index([email], map: "idx_users_email")
+  @@index([google_id], map: "idx_users_google_id")
+  @@index([foundation_id], map: "idx_users_foundation_id")
+}
+
+enum animal_gender {
+  MALE
+  FEMALE
+}
+
+enum animal_size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum animal_status {
+  AVAILABLE
+  ADOPTED
+  IN_CARE
+  DECEASED
+  SPONSORED
+}
+
+enum animal_type {
+  DOG
+  CAT
+  OTHER
+}
+
+enum campaign_status {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum campaign_type {
+  DONATION
+  ADOPTION
+  VOLUNTEERING
+  SPONSORSHIP
+}
+
+enum foundation_status {
+  DRAFT
+  PUBLIC
+  SUSPENDED
+  REJECTED
+}
+
+enum role {
+  SUPER_ADMIN
+  FOUNDATION_ADMIN
+}
+
+enum trait_type {
+  PERSONALITY
+  HOME_REQUIREMENT
+}

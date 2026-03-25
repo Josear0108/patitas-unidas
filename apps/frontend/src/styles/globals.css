@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 30% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 35 30% 99%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 340 75% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 340 10% 95%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 340 75% 48%;
+    --chart-1: 340 75% 48%;
+    --chart-2: 200 70% 45%;
+    --chart-3: 150 60% 50%;
+    --chart-4: 80 55% 55%;
+    --chart-5: 40 70% 50%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222 25% 8%;
+    --foreground: 210 40% 96%;
+    --card: 222 25% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 25% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 340 75% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 25% 18%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 25% 16%;
+    --muted-foreground: 215 20% 60%;
+    --accent: 217 25% 18%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 25% 18%;
+    --input: 217 25% 18%;
+    --ring: 340 75% 62%;
+    --chart-1: 340 75% 62%;
+    --chart-2: 200 70% 55%;
+    --chart-3: 150 60% 50%;
+    --chart-4: 80 55% 55%;
+    --chart-5: 40 70% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  #root {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}

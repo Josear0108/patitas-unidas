@@ -1,0 +1,9 @@
+{
+  "name": "patitas-unidas",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --stream --filter patitas-unidas-finally --filter backend dev",
+    "dev:front": "pnpm --filter frontend dev",
+    "dev:back": "pnpm --filter backend dev"
+  }
+}

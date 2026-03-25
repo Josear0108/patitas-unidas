@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tasklist /FI \"PID eq 9988\")",
+      "Bash(powershell -Command \"Get-Process -Id 9988 | Select-Object Name, Id, Path\")",
+      "Bash(for dir:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/USER/Projects/patitas-unidas-finally/apps/backend/src/features/**)",
+      "Bash(done)",
+      "Bash(pnpm --filter backend add helmet express-rate-limit)",
+      "Bash(npx prisma:*)"
+    ]
+  }
+}
