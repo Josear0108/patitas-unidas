@@ -1,16 +1,20 @@
 import type { Request, Response } from 'express'
 import { prisma } from '../../lib/prisma.js'
-import type { campaign_status, campaign_type, Prisma } from '../../../generated/prisma/client.js'
+import { Prisma } from '../../../generated/prisma/client.js'
+import type { campaign_status, campaign_type } from '../../../generated/prisma/client.js'
+import { CampaignQuerySchema, CampaignParamSchema, CampaignSlugParamSchema, PaginationQuerySchema } from '@patitas/types'
 
+// =============================================================================
+// Helpers privados
+// =============================================================================
+
+/** Días restantes hasta end_date. Retorna null si la campaña no tiene fecha límite. */
 function computeDaysLeft(endDate: Date | null): number | null {
   if (!endDate) return null
   return Math.max(0, Math.ceil((endDate.getTime() - Date.now()) / 86_400_000))
 }
 
-function str(val: unknown): string | undefined {
-  return typeof val === 'string' ? val : undefined
-}
-
+/** Convierte una fila de Prisma al formato de respuesta de resumen. */
 function mapCampaign(c: {
   id: string
   title: string
@@ -49,25 +53,10 @@ function mapCampaign(c: {
   }
 }
 
-export async function getCampaigns(req: Request, res: Response) {
-  const status = str(req.query['status'])
-  const type = str(req.query['type'])
-  const isUrgent = req.query['is_urgent'] === 'true'
-  const foundationId = str(req.query['foundation_id'])
-
-  const campaigns = await prisma.campaigns.findMany({
-    where: {
-      status: (status ?? 'ACTIVE') as campaign_status,
-      ...(type ? { type: type as campaign_type } : {}),
-      ...(isUrgent ? { is_urgent: true } : {}),
-      ...(foundationId ? { foundation_id: foundationId } : {}),
-    },
-    orderBy: [{ is_urgent: 'desc' }, { created_at: 'desc' }],
-  })
-
-  res.json(campaigns.map(mapCampaign))
-}
-
+/**
+ * Consulta una campaña por identificador único (id o slug) incluyendo
+ * actualizaciones, recompensas y top 5 donantes ordenados por monto.
+ */
 async function fetchCampaignWithDetails(where: Prisma.campaignsWhereUniqueInput) {
   return prisma.campaigns.findUnique({
     where,
@@ -83,6 +72,7 @@ async function fetchCampaignWithDetails(where: Prisma.campaignsWhereUniqueInput)
   })
 }
 
+/** Construye la respuesta detallada de una campaña a partir del resultado de Prisma. */
 function buildCampaignDetailResponse(campaign: NonNullable<Awaited<ReturnType<typeof fetchCampaignWithDetails>>>) {
   return {
     ...mapCampaign(campaign),
@@ -103,14 +93,107 @@ function buildCampaignDetailResponse(campaign: NonNullable<Awaited<ReturnType<ty
   }
 }
 
-export async function getCampaignById(req: Request, res: Response) {
-  const campaign = await fetchCampaignWithDetails({ id: String(req.params['id']) })
-  if (!campaign) { res.status(404).json({ error: 'Campaña no encontrada' }); return }
-  res.json(buildCampaignDetailResponse(campaign))
+// =============================================================================
+// Endpoints
+// =============================================================================
+
+/**
+ * GET /api/v1/campaigns?page=1&limit=20
+ * Lista campañas con filtros opcionales: status, type, is_urgent, foundation_id.
+ * Por defecto retorna solo campañas ACTIVE.
+ * Retorna respuesta paginada con metadata: total, page, limit, totalPages.
+ */
+export async function getCampaigns(req: Request, res: Response) {
+  const filterParsed = CampaignQuerySchema.safeParse(req.query)
+  if (!filterParsed.success) {
+    res.status(400).json({ error: 'Parámetros inválidos', details: filterParsed.error.flatten().fieldErrors })
+    return
+  }
+
+  const pageParsed = PaginationQuerySchema.safeParse(req.query)
+  if (!pageParsed.success) {
+    res.status(400).json({ error: 'Parámetros de paginación inválidos', details: pageParsed.error.flatten().fieldErrors })
+    return
+  }
+
+  const { status, type, is_urgent: isUrgent, foundation_id: foundationId } = filterParsed.data
+  const { page, limit } = pageParsed.data
+
+  const where = {
+    status: status ?? 'ACTIVE' as const,
+    ...(type ? { type } : {}),
+    ...(isUrgent ? { is_urgent: true } : {}),
+    ...(foundationId ? { foundation_id: foundationId } : {}),
+  }
+
+  try {
+    const [campaigns, total] = await Promise.all([
+      prisma.campaigns.findMany({
+        where,
+        orderBy: [{ is_urgent: 'desc' }, { created_at: 'desc' }],
+        skip: (page - 1) * limit,
+        take: limit,
+      }),
+      prisma.campaigns.count({ where }),
+    ])
+
+    res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=60')
+    res.json({
+      data: campaigns.map(mapCampaign),
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    })
+  } catch (err) {
+    throw err
+  }
 }
 
+/**
+ * GET /api/v1/campaigns/:id
+ * Retorna el detalle completo de una campaña por UUID,
+ * incluyendo actualizaciones, recompensas y top donantes.
+ */
+export async function getCampaignById(req: Request, res: Response) {
+  const parsed = CampaignParamSchema.safeParse(req.params)
+  if (!parsed.success) { res.status(400).json({ error: 'ID inválido' }); return }
+
+  try {
+    const campaign = await fetchCampaignWithDetails({ id: parsed.data.id })
+    if (!campaign) { res.status(404).json({ error: 'Campaña no encontrada' }); return }
+    res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=60')
+    res.json(buildCampaignDetailResponse(campaign))
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+      res.status(404).json({ error: 'Campaña no encontrada' })
+      return
+    }
+    throw err
+  }
+}
+
+/**
+ * GET /api/v1/campaigns/slug/:slug
+ * Igual que getCampaignById pero busca por slug en lugar de UUID.
+ * Útil para URLs amigables en el frontend.
+ */
 export async function getCampaignBySlug(req: Request, res: Response) {
-  const campaign = await fetchCampaignWithDetails({ slug: String(req.params['slug']) })
-  if (!campaign) { res.status(404).json({ error: 'Campaña no encontrada' }); return }
-  res.json(buildCampaignDetailResponse(campaign))
+  const parsed = CampaignSlugParamSchema.safeParse(req.params)
+  if (!parsed.success) { res.status(400).json({ error: 'Slug inválido' }); return }
+
+  try {
+    const campaign = await fetchCampaignWithDetails({ slug: parsed.data.slug })
+    if (!campaign) { res.status(404).json({ error: 'Campaña no encontrada' }); return }
+    res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=60')
+    res.json(buildCampaignDetailResponse(campaign))
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+      res.status(404).json({ error: 'Campaña no encontrada' })
+      return
+    }
+    throw err
+  }
 }
