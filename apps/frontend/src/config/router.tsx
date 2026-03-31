@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { Spinner } from '@/components/ui/spinner';
+import { AuthCallbackPage } from '@/features/auth';
 
 const HomePage = lazy(() =>
   import('@/features/home').then((m) => ({ default: m.HomePage }))
@@ -81,5 +82,10 @@ export const router = createBrowserRouter([
         element: s(<CampaignDetailPage />),
       },
     ],
+  },
+  {
+    // Google OAuth redirige a esta ruta con ?token=JWT
+    path: '/auth/callback',
+    element: <AuthCallbackPage />,
   },
 ]);

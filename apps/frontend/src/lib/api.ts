@@ -7,6 +7,17 @@ export const apiClient = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
+// Adjunta el JWT en cada petición si existe en localStorage.
+// Esto permite que /auth/me y otros endpoints protegidos funcionen
+// sin tener que pasar el token manualmente en cada llamada.
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
 apiClient.interceptors.response.use(
   (res) => res,
   (error) => {
