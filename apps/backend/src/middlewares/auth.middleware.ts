@@ -7,11 +7,11 @@ export interface AuthUser {
   foundation_id: string | null
 }
 
+// Extendemos Express.User para que req.user sea AuthUser en todo el proyecto.
+// Passport declara req.user como Express.User — al extenderla evitamos conflictos de tipos.
 declare global {
   namespace Express {
-    interface Request {
-      user?: AuthUser
-    }
+    interface User extends AuthUser {}
   }
 }
 

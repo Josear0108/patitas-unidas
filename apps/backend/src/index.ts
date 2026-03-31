@@ -3,11 +3,15 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
+import { configurePassport } from './features/auth/auth.config.js'
 
 import foundationsRouter from './features/foundations/foundations.routes.js'
 import animalsRouter from './features/animals/animals.routes.js'
 import campaignsRouter from './features/campaigns/campaigns.routes.js'
 import authRouter from './features/auth/auth.routes.js'
+
+// Inicializa la estrategia de Google OAuth antes de registrar rutas
+configurePassport()
 
 const app = express()
 const PORT = process.env['PORT'] ?? 3000
