@@ -1,8 +1,8 @@
 import { FoundationCard } from './FoundationCard';
-import type { Foundation } from '../types/foundation';
+import type { FoundationSummary } from '@patitas/types';
 
 interface FoundationGridProps {
-  foundations: Foundation[];
+  foundations: FoundationSummary[];
   emptyMessage?: string;
 }
 

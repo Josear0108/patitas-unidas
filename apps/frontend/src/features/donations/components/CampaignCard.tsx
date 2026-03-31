@@ -3,16 +3,17 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { AlertCircle, Users, Calendar } from 'lucide-react';
-import type { Campaign } from '../types/donation';
+import type { CampaignSummary } from '@patitas/types';
 
 interface CampaignCardProps {
-  campaign: Campaign;
+  campaign: CampaignSummary;
 }
 
 /**
  * Componente de tarjeta para campañas de donación
  */
 export function CampaignCard({ campaign }: CampaignCardProps) {
+  // CampaignSummary.currency es string (no Currency enum) en @patitas/types
   const goal = campaign.goalAmount ?? 0;
   const progress = goal > 0 ? (campaign.raisedAmount / goal) * 100 : 0;
 

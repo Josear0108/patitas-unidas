@@ -3,10 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { AlertCircle, Clock, MapPin } from 'lucide-react';
-import type { Animal } from '@/features/animals';
+import type { AnimalSummary } from '@patitas/types';
 
 interface UrgentCasesSectionProps {
-  animals: Animal[];
+  animals: AnimalSummary[];
 }
 
 export function UrgentCasesSection({ animals }: UrgentCasesSectionProps) {

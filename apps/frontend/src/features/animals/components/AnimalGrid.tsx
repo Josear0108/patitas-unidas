@@ -1,9 +1,9 @@
 import { PawPrint } from 'lucide-react';
 import { AnimalCard } from './AnimalCard';
-import type { Animal } from '../types/animal';
+import type { AnimalSummary } from '@patitas/types';
 
 interface AnimalGridProps {
-  animals: Animal[];
+  animals: AnimalSummary[];
   emptyMessage?: string;
 }
 

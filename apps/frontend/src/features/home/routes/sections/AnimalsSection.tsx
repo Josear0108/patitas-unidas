@@ -4,15 +4,17 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Search, Heart, MapPin, CheckCircle2, PawPrint } from 'lucide-react';
-import { useAnimalFilters } from '@/features/animals';
-import type { Animal, AnimalFilters } from '@/features/animals';
+import { Search, Heart, MapPin, PawPrint } from 'lucide-react';
+import { useAnimalListParams } from '@/features/animals';
+import { useAnimals } from '@/features/animals/hooks/useAnimals';
+import type { AnimalFilters } from '@/features/animals';
+import type { AnimalSummary } from '@patitas/types';
 
-interface AnimalsSectionProps {
-  animals: Animal[];
-}
-
-export function AnimalsSection({ animals }: AnimalsSectionProps) {
+/**
+ * La sección maneja su propio estado de filtros y llama directamente a la API.
+ * Así el filtrado real lo hace la base de datos, no el cliente.
+ */
+export function AnimalsSection() {
   const [filters, setFilters] = useState<AnimalFilters>({
     type: 'all',
     size: 'all',
@@ -20,7 +22,9 @@ export function AnimalsSection({ animals }: AnimalsSectionProps) {
     searchQuery: '',
   });
 
-  const filteredAnimals = useAnimalFilters(animals, filters);
+  const params = useAnimalListParams(filters);
+  const { data } = useAnimals(params);
+  const animals: AnimalSummary[] = data?.data ?? [];
 
   return (
     <section id="animales" className="py-8 md:py-16">
@@ -107,7 +111,7 @@ export function AnimalsSection({ animals }: AnimalsSectionProps) {
 
         {/* Animals Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-          {filteredAnimals.map((animal) => (
+          {animals.map((animal) => (
             <Link key={animal.id} to={`/animales/${animal.id}`}>
               <Card className="overflow-hidden hover:shadow-lg transition-all h-full">
                 <div className="relative aspect-square">
@@ -133,20 +137,6 @@ export function AnimalsSection({ animals }: AnimalsSectionProps) {
                     <span>{animal.location}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      {animal.isVaccinated && (
-                        <div className="flex items-center gap-1 text-xs text-green-600">
-                          <CheckCircle2 className="h-3 w-3" />
-                          <span>Vacunado</span>
-                        </div>
-                      )}
-                      {animal.isNeutered && (
-                        <div className="flex items-center gap-1 text-xs text-green-600">
-                          <CheckCircle2 className="h-3 w-3" />
-                          <span>Esterilizado</span>
-                        </div>
-                      )}
-                    </div>
                     <button
                       aria-label={`Guardar ${animal.name}`}
                       onClick={(e) => e.preventDefault()}
@@ -161,7 +151,7 @@ export function AnimalsSection({ animals }: AnimalsSectionProps) {
           ))}
         </div>
 
-        {filteredAnimals.length === 0 && (
+        {animals.length === 0 && (
           <div className="text-center py-12">
             <PawPrint className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <p className="text-muted-foreground">No se encontraron animales con esos filtros</p>

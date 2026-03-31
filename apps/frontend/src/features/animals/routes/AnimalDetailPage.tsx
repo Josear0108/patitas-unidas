@@ -20,6 +20,7 @@ import {
 import { useAnimal } from '../hooks/useAnimals'
 import { PageWrapper } from '@/components/shared'
 import { ANIMAL_SIZE_LABEL, ANIMAL_GENDER_LABEL } from '../types/animal'
+// AnimalDetail viene de @patitas/types — el hook useAnimal ya lo retorna correctamente
 
 export function AnimalDetailPage() {
   const { id } = useParams<{ id: string }>()

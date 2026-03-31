@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, CheckCircle2 } from 'lucide-react';
-import type { Foundation } from '../types/foundation';
+import type { FoundationSummary } from '@patitas/types';
 
 interface FoundationCardProps {
-  foundation: Foundation;
+  foundation: FoundationSummary;
   className?: string;
 }
 
@@ -13,6 +13,7 @@ interface FoundationCardProps {
  * Componente de tarjeta para mostrar información resumida de una fundación
  */
 export function FoundationCard({ foundation, className = '' }: FoundationCardProps) {
+  // FoundationSummary incluye stats como campo requerido (no opcional)
   return (
     <Link
       to={`/fundaciones/${foundation.id}`}

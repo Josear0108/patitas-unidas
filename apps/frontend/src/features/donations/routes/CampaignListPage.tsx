@@ -7,7 +7,11 @@ import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 
 export function CampaignListPage() {
-  const { data: campaigns = [], isLoading, error } = useDonations()
+  // Pedimos todas las campañas activas a la API
+  const { data, isLoading, error } = useDonations({ status: 'ACTIVE' })
+
+  const campaigns = data?.data ?? []
+  const meta = data?.meta
 
   if (isLoading) {
     return (
@@ -37,8 +41,9 @@ export function CampaignListPage() {
     )
   }
 
-  const urgentCampaigns = campaigns.filter((c) => c.isUrgent === true);
-  const otherCampaigns = campaigns.filter((c) => c.isUrgent !== true);
+  // Separamos urgentes de no urgentes en el cliente (ya que ambos vienen en la misma petición)
+  const urgentCampaigns = campaigns.filter((c) => c.isUrgent)
+  const otherCampaigns = campaigns.filter((c) => !c.isUrgent)
 
   return (
     <PageWrapper>
@@ -89,12 +94,12 @@ export function CampaignListPage() {
           </div>
         )}
 
-        {campaigns.length > 0 && (
+        {meta && meta.total > 0 && (
           <div className="mt-8 text-center text-sm text-muted-foreground">
-            {campaigns.length} {campaigns.length === 1 ? 'campaña activa' : 'campañas activas'}
+            {meta.total} {meta.total === 1 ? 'campaña activa' : 'campañas activas'}
           </div>
         )}
       </div>
     </PageWrapper>
-  );
+  )
 }

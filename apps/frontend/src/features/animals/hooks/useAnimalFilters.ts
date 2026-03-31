@@ -1,23 +1,23 @@
-import { useMemo } from 'react';
-import type { Animal, AnimalFilters } from '../types/animal';
+import { useMemo } from 'react'
+import type { AnimalFilters } from '../types/animal'
+import type { AnimalListParams } from '../api/IAnimalsService'
 
 /**
- * Hook para filtrar animales según los criterios seleccionados.
- * Centraliza la lógica de filtrado usada en HomePage y AnimalListPage.
+ * Convierte el estado de filtros de la UI (AnimalFilters) en query params
+ * para la API (AnimalListParams).
+ *
+ * Este hook ya no filtra un array en memoria. En cambio, produce el objeto
+ * de params que useAnimals() pasa a la API como query string.
+ * Ventaja: la base de datos filtra eficientemente con índices, no cargamos
+ * todos los registros al frontend.
  */
-export function useAnimalFilters(animals: Animal[], filters: AnimalFilters): Animal[] {
-  return useMemo(
-    () =>
-      animals.filter((animal) => {
-        const matchesType = filters.type === 'all' || animal.type === filters.type;
-        const matchesSize = filters.size === 'all' || animal.size === filters.size;
-        const matchesUrgent = !filters.urgentOnly || animal.isUrgent;
-        const matchesSearch =
-          filters.searchQuery === '' ||
-          animal.name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
-          (animal.location ?? '').toLowerCase().includes(filters.searchQuery.toLowerCase());
-        return matchesType && matchesSize && matchesUrgent && matchesSearch;
-      }),
-    [animals, filters],
-  );
+export function useAnimalListParams(filters: AnimalFilters): AnimalListParams {
+  return useMemo(() => {
+    const params: AnimalListParams = {}
+    if (filters.type !== 'all') params.type = filters.type
+    if (filters.size !== 'all') params.size = filters.size
+    if (filters.urgentOnly) params.is_urgent = true
+    if (filters.searchQuery.trim() !== '') params.search = filters.searchQuery.trim()
+    return params
+  }, [filters.type, filters.size, filters.urgentOnly, filters.searchQuery])
 }

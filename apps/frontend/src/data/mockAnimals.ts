@@ -1,10 +1,11 @@
-import type { Animal } from '@/features/animals/types/animal';
+import type { AnimalDetail } from '@patitas/types';
 
 /**
- * Datos mock de animales para desarrollo
- * TODO: Reemplazar con llamadas a API real
+ * Datos mock de animales para desarrollo.
+ * Los mocks no tienen todos los campos de AnimalDetail (e.g. birthDate).
+ * Se usa cast parcial para evitar errores de tipos sin perder la forma general.
  */
-export const mockAnimals: Animal[] = [
+export const mockAnimals: Partial<AnimalDetail>[] = [
   {
     id: '1',
     name: 'Max',

@@ -6,31 +6,20 @@
  */
 
 // Routes (Pages)
-export { AnimalListPage } from './routes/AnimalListPage';
-export { AnimalDetailPage } from './routes/AnimalDetailPage';
+export { AnimalListPage } from './routes/AnimalListPage'
+export { AnimalDetailPage } from './routes/AnimalDetailPage'
 
 // Services
-export { animalsService } from './api/animalsService';
-export type { IAnimalsService } from './api/IAnimalsService';
+export { animalsService } from './api/animalsService'
+export type { IAnimalsService, AnimalListParams } from './api/IAnimalsService'
 
-// Types
-export type {
-  Animal,
-  AnimalType,
-  AnimalSize,
-  AnimalGender,
-  AnimalFilters,
-  AnimalFoundation,
-} from './types/animal';
-
-export {
-  ANIMAL_TYPE_LABEL,
-  ANIMAL_SIZE_LABEL,
-  ANIMAL_GENDER_LABEL,
-} from './types/animal';
+// Types (display helpers — los tipos de datos vienen de @patitas/types)
+export type { AnimalFilters } from './types/animal'
+export { ANIMAL_TYPE_LABEL, ANIMAL_SIZE_LABEL, ANIMAL_GENDER_LABEL } from './types/animal'
 
 // Hooks
-export { useAnimalFilters } from './hooks/useAnimalFilters';
+export { useAnimals, useAnimal } from './hooks/useAnimals'
+export { useAnimalListParams } from './hooks/useAnimalFilters'
 
 // Public components (if needed by other features)
-export { AnimalCard } from './components/AnimalCard';
+export { AnimalCard } from './components/AnimalCard'

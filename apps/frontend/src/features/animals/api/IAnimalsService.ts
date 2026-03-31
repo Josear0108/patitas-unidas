@@ -1,4 +1,14 @@
-import type { Animal } from '../types/animal';
+import type { AnimalDetail, AnimalSummary, PaginatedResponse } from '@patitas/types'
+
+export interface AnimalListParams {
+  type?: 'DOG' | 'CAT' | 'OTHER'
+  size?: 'SMALL' | 'MEDIUM' | 'LARGE'
+  is_urgent?: boolean
+  foundation_id?: string
+  search?: string
+  page?: number
+  limit?: number
+}
 
 /**
  * Contrato del servicio de animales.
@@ -6,8 +16,6 @@ import type { Animal } from '../types/animal';
  * lo que permite swapear la implementación (mock → API real) sin tocar los consumidores.
  */
 export interface IAnimalsService {
-  getAll(): Promise<Animal[]>;
-  getById(id: string): Promise<Animal | undefined>;
-  getByFoundation(foundationId: string): Promise<Animal[]>;
-  getUrgent(): Promise<Animal[]>;
+  getAll(params?: AnimalListParams): Promise<PaginatedResponse<AnimalSummary>>
+  getById(id: string): Promise<AnimalDetail | undefined>
 }

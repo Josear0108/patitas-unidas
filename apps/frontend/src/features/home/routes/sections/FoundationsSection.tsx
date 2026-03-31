@@ -3,10 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { ChevronRight, MapPin, Award } from 'lucide-react';
-import type { Foundation } from '@/features/foundations';
+import type { FoundationSummary } from '@patitas/types';
 
 interface FoundationsSectionProps {
-  foundations: Foundation[];
+  foundations: FoundationSummary[];
 }
 
 export function FoundationsSection({ foundations }: FoundationsSectionProps) {

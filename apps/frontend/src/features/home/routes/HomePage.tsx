@@ -11,8 +11,12 @@ import { HowToHelpSection } from './sections/HowToHelpSection'
 const HERO_STATS = { adoptions: 347, foundations: 23, waiting: 127 }
 
 export function HomePage() {
-  const { data: animals = [] } = useAnimals()
-  const { data: foundations = [] } = useFoundations()
+  // Para UrgentCasesSection y HowToHelpSection necesitamos los animales
+  const { data: animalsResponse } = useAnimals()
+  const { data: foundationsResponse } = useFoundations()
+
+  const animals = animalsResponse?.data ?? []
+  const foundations = foundationsResponse?.data ?? []
 
   const urgentAnimals = animals.filter((a) => a.isUrgent)
   const featuredAnimals = animals.slice(0, 3)
@@ -21,7 +25,8 @@ export function HomePage() {
     <PageWrapper>
       <HeroSection stats={HERO_STATS} />
       <UrgentCasesSection animals={urgentAnimals} />
-      <AnimalsSection animals={animals} />
+      {/* AnimalsSection maneja sus propios filtros y hace su propio fetch */}
+      <AnimalsSection />
       <FoundationsSection foundations={foundations} />
       <HowToHelpSection featuredAnimals={featuredAnimals} />
       <Footer />

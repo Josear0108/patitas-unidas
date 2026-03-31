@@ -3,7 +3,11 @@ import { FoundationGrid } from '../components/FoundationGrid'
 import { PageWrapper } from '@/components/shared'
 
 export function FoundationListPage() {
-  const { data: foundations = [], isLoading, error } = useFoundations()
+  // data es { data: FoundationSummary[], meta: { total, page, ... } }
+  const { data, isLoading, error } = useFoundations()
+
+  const foundations = data?.data ?? []
+  const meta = data?.meta
 
   if (isLoading) {
     return (
@@ -25,8 +29,6 @@ export function FoundationListPage() {
     )
   }
 
-  const verifiedFoundations = foundations.filter((f) => f.isVerified)
-
   return (
     <PageWrapper>
       <div className="container px-4 md:px-6 lg:px-8 py-8">
@@ -40,13 +42,13 @@ export function FoundationListPage() {
         </div>
 
         <FoundationGrid
-          foundations={verifiedFoundations}
+          foundations={foundations}
           emptyMessage="No hay fundaciones disponibles en este momento."
         />
 
-        {foundations.length > 0 && (
+        {meta && meta.total > 0 && (
           <div className="mt-8 text-center text-sm text-muted-foreground">
-            Mostrando {verifiedFoundations.length} de {foundations.length} fundaciones
+            {meta.total} {meta.total === 1 ? 'fundación' : 'fundaciones'}
           </div>
         )}
       </div>

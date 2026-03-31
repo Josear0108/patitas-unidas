@@ -4,22 +4,28 @@ import { ArrowLeft } from 'lucide-react'
 import { useAnimals } from '../hooks/useAnimals'
 import { AnimalFilters } from '../components/AnimalFilters'
 import { AnimalGrid } from '../components/AnimalGrid'
-import { useAnimalFilters } from '../hooks/useAnimalFilters'
+import { useAnimalListParams } from '../hooks/useAnimalFilters'
 import { PageWrapper } from '@/components/shared'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import type { AnimalFilters as FiltersType } from '../types/animal'
 
 export function AnimalListPage() {
-  const { data: animals = [], isLoading, error } = useAnimals()
   const [filters, setFilters] = useState<FiltersType>({
     type: 'all',
     size: 'all',
     urgentOnly: false,
     searchQuery: '',
-  });
+  })
 
-  const filteredAnimals = useAnimalFilters(animals, filters)
+  // Convierte los filtros de UI en query params para la API
+  const params = useAnimalListParams(filters)
+
+  // data ahora es { data: AnimalSummary[], meta: { total, page, limit, totalPages } }
+  const { data, isLoading, error } = useAnimals(params)
+
+  const animals = data?.data ?? []
+  const meta = data?.meta
 
   if (isLoading) {
     return (
@@ -49,6 +55,9 @@ export function AnimalListPage() {
     )
   }
 
+  const hasActiveFilters =
+    filters.searchQuery || filters.type !== 'all' || filters.size !== 'all' || filters.urgentOnly
+
   return (
     <PageWrapper>
       <div className="container px-4 md:px-6 lg:px-8 py-8">
@@ -70,24 +79,29 @@ export function AnimalListPage() {
 
         <div className="flex items-center justify-between mb-6 md:mb-8">
           <AnimalFilters filters={filters} onFilterChange={setFilters} />
-          {animals.length > 0 && (
+          {meta && (
             <p className="text-sm text-muted-foreground">
-              {filteredAnimals.length === animals.length
-                ? `${animals.length} animales`
-                : `${filteredAnimals.length} de ${animals.length}`}
+              {meta.total} {meta.total === 1 ? 'animal' : 'animales'}
             </p>
           )}
         </div>
 
         <AnimalGrid
-          animals={filteredAnimals}
+          animals={animals}
           emptyMessage={
-            filters.searchQuery || filters.type !== 'all' || filters.size !== 'all' || filters.urgentOnly
+            hasActiveFilters
               ? 'No se encontraron animales con estos filtros.'
               : 'No hay animales disponibles en este momento.'
           }
         />
+
+        {/* Indicador de paginación — listo para implementar cuando se necesite */}
+        {meta && meta.totalPages > 1 && (
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            Página {meta.page} de {meta.totalPages}
+          </p>
+        )}
       </div>
     </PageWrapper>
-  );
+  )
 }

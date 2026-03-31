@@ -1,42 +1,30 @@
 import { useQuery } from '@tanstack/react-query'
 import { animalsService } from '../api/animalsService'
-import type { IAnimalsService } from '../api/IAnimalsService'
-
-const service: IAnimalsService = animalsService
+import type { AnimalListParams } from '../api/IAnimalsService'
 
 export const animalKeys = {
   all: ['animals'] as const,
+  list: (params?: AnimalListParams) => ['animals', 'list', params ?? {}] as const,
   detail: (id: string) => ['animals', id] as const,
-  byFoundation: (foundationId: string) => ['animals', 'foundation', foundationId] as const,
-  urgent: ['animals', 'urgent'] as const,
 }
 
-export function useAnimals() {
+/**
+ * Obtiene la lista paginada de animales, opcionalmente filtrada.
+ * Los filtros se envían como query params a la API (no se filtran en memoria).
+ *
+ * Ejemplo: useAnimals({ type: 'DOG', is_urgent: true })
+ */
+export function useAnimals(params?: AnimalListParams) {
   return useQuery({
-    queryKey: animalKeys.all,
-    queryFn: () => service.getAll(),
+    queryKey: animalKeys.list(params),
+    queryFn: () => animalsService.getAll(params),
   })
 }
 
 export function useAnimal(id: string) {
   return useQuery({
     queryKey: animalKeys.detail(id),
-    queryFn: () => service.getById(id),
+    queryFn: () => animalsService.getById(id),
     enabled: !!id,
-  })
-}
-
-export function useAnimalsByFoundation(foundationId: string) {
-  return useQuery({
-    queryKey: animalKeys.byFoundation(foundationId),
-    queryFn: () => service.getByFoundation(foundationId),
-    enabled: !!foundationId,
-  })
-}
-
-export function useUrgentAnimals() {
-  return useQuery({
-    queryKey: animalKeys.urgent,
-    queryFn: () => service.getUrgent(),
   })
 }

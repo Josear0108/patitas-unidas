@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Clock, MapPin } from 'lucide-react';
-import type { Animal } from '../types/animal';
+import type { AnimalSummary } from '@patitas/types';
 
 interface AnimalCardProps {
-  animal: Animal;
+  animal: AnimalSummary;
   className?: string;
 }
 

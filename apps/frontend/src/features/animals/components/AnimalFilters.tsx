@@ -4,7 +4,10 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { SlidersHorizontal, Dog, Cat, AlertTriangle, X, Search } from 'lucide-react';
-import type { AnimalType, AnimalSize, AnimalFilters as FiltersType } from '../types/animal';
+import type { AnimalFilters as FiltersType } from '../types/animal';
+
+type AnimalType = 'DOG' | 'CAT' | 'OTHER';
+type AnimalSize = 'SMALL' | 'MEDIUM' | 'LARGE';
 
 interface AnimalFiltersProps {
   filters: FiltersType;

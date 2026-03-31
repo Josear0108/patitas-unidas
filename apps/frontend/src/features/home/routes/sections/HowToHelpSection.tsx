@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ChevronRight, Home, DollarSign, Users } from 'lucide-react';
-import type { Animal } from '@/features/animals';
+import type { AnimalSummary } from '@patitas/types';
 
 interface HowToHelpSectionProps {
-  featuredAnimals: Animal[];
+  featuredAnimals: AnimalSummary[];
 }
 
 export function HowToHelpSection({ featuredAnimals }: HowToHelpSectionProps) {

@@ -3,21 +3,15 @@
  */
 
 // Routes
-export { FoundationListPage } from './routes/FoundationListPage';
-export { FoundationDetailPage } from './routes/FoundationDetailPage';
+export { FoundationListPage } from './routes/FoundationListPage'
+export { FoundationDetailPage } from './routes/FoundationDetailPage'
 
 // Services
-export { foundationsService } from './api/foundationsService';
-export type { IFoundationsService } from './api/IFoundationsService';
+export { foundationsService } from './api/foundationsService'
+export type { IFoundationsService, FoundationListParams } from './api/IFoundationsService'
 
-// Types
-export type {
-  Foundation,
-  FoundationStats,
-  ContactInfo,
-  FoundationAnimal,
-  CampaignSummary,
-} from './types/foundation';
+// Hooks
+export { useFoundations, useFoundation } from './hooks/useFoundations'
 
 // Public components
-export { FoundationCard } from './components/FoundationCard';
+export { FoundationCard } from './components/FoundationCard'
