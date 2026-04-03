@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 export interface AuthUser {
   id: string
-  role: 'SUPER_ADMIN' | 'FOUNDATION_ADMIN'
+  role: 'SUPER_ADMIN' | 'FOUNDATION_ADMIN' | 'VERIFIED_USER' | 'VISITOR'
   foundation_id: string | null
 }
 

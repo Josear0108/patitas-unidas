@@ -41,7 +41,6 @@ export function configurePassport() {
               email,
               name,
               avatar_url: avatarUrl,
-              role: 'FOUNDATION_ADMIN',
             },
           })
 

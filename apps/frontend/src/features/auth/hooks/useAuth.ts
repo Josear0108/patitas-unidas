@@ -12,7 +12,7 @@ const AuthUserSchema = z.object({
   email: z.string().email(),
   name: z.string(),
   avatar_url: z.string().nullable(),
-  role: z.enum(['SUPER_ADMIN', 'FOUNDATION_ADMIN']),
+  role: z.enum(['SUPER_ADMIN', 'FOUNDATION_ADMIN', 'VERIFIED_USER', 'VISITOR']),
   foundation_id: z.string().nullable(),
 })
 
