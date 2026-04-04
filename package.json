@@ -5,5 +5,19 @@
     "dev": "pnpm --parallel --stream --filter patitas-unidas-finally --filter backend dev",
     "dev:front": "pnpm --filter frontend dev",
     "dev:back": "pnpm --filter backend dev"
+  },
+  "pnpm": {
+    "overrides": {
+      "picomatch@^2": "^2.3.2",
+      "picomatch@^4": "^4.0.4",
+      "path-to-regexp": "^8.4.0",
+      "hono": "^4.12.4",
+      "@hono/node-server": "^1.19.10",
+      "lodash": "^4.18.0",
+      "defu": "^6.1.5",
+      "brace-expansion@^1": "^1.1.13",
+      "brace-expansion@^5": "^5.0.5",
+      "effect": "^3.20.0"
+    }
   }
 }
