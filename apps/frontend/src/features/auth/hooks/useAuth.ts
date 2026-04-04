@@ -29,7 +29,6 @@ const AUTH_KEY = ['auth', 'me'] as const
  */
 export function useAuth() {
   const queryClient = useQueryClient()
-  const token = localStorage.getItem('token')
 
   const query = useQuery({
     queryKey: AUTH_KEY,
@@ -37,8 +36,6 @@ export function useAuth() {
       const res = await apiClient.get('/auth/me')
       return AuthUserSchema.parse(res.data)
     },
-    // Solo ejecutamos la query si hay un token guardado
-    enabled: !!token,
     // Reintentos no son útiles aquí — si falla es porque el token expiró
     retry: false,
     staleTime: 1000 * 60 * 10, // 10 minutos

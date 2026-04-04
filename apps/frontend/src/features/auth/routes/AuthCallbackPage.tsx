@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 import { Spinner } from '@/components/ui/spinner'
 
@@ -17,22 +17,13 @@ import { Spinner } from '@/components/ui/spinner'
  * (el usuario verá la UI como no autenticado).
  */
 export function AuthCallbackPage() {
-  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
   useEffect(() => {
-    const token = searchParams.get('token')
-
-    if (token) {
-      localStorage.setItem('token', token)
-      // Forzamos que useAuth() vuelva a pedir /auth/me con el nuevo token
-      queryClient.invalidateQueries({ queryKey: ['auth', 'me'] })
-    }
-
-    // Siempre redirigimos al home, con token o sin él
-    navigate('/', { replace: true })
-  }, [searchParams, navigate, queryClient])
+    queryClient.invalidateQueries({ queryKey: ['auth', 'me'] }) // Invalida la query de auth para que useAuth() recargue el usuario
+    navigate('/')
+  }, [navigate, queryClient])
 
   return (
     <div className="flex items-center justify-center min-h-screen gap-3">
