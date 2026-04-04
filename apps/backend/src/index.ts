@@ -4,7 +4,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 import { configurePassport } from './features/auth/auth.config.js'
-
+import cookieParser from 'cookie-parser'
 import foundationsRouter from './features/foundations/foundations.routes.js'
 import animalsRouter from './features/animals/animals.routes.js'
 import campaignsRouter from './features/campaigns/campaigns.routes.js'
@@ -17,7 +17,11 @@ const app = express()
 const PORT = process.env['PORT'] ?? 3000
 
 app.use(helmet())
-app.use(cors({ origin: process.env['FRONTEND_URL'] ?? 'http://localhost:5173' }))
+app.use(cors({
+  origin: process.env['FRONTEND_URL'] ?? 'http://localhost:5173',
+  credentials: true, // Permite enviar cookies con la request
+}))
+app.use(cookieParser()) // Para leer las cookies de las requests
 app.use(rateLimit({ windowMs: 60_000, max: 100, standardHeaders: true, legacyHeaders: false }))
 app.use(express.json())
 
