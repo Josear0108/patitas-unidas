@@ -22,7 +22,7 @@ function issueToken(user: users): string {
     foundation_id: user.foundation_id,
   }
 
-  return jwt.sign(payload, secret, { expiresIn: '7d' })
+  return jwt.sign(payload, secret, { expiresIn: '1d' })
 }
 
 // =============================================================================
@@ -47,10 +47,17 @@ export function handleGoogleCallback(req: Request, res: Response): void {
 
   const token = issueToken(user)
   const frontendUrl = process.env['FRONTEND_URL'] ?? 'http://localhost:5173'
+  const isProd = process.env['NODE_ENV'] === 'production'
 
-  // Redirige al frontend con el token como query param
-  // El frontend lo lee con new URLSearchParams(window.location.search)
-  res.redirect(`${frontendUrl}/auth/callback?token=${token}`)
+  res.cookie('token', token, {
+    httpOnly: true,    // Solo el servidor puede leer el token
+    secure: isProd,     // Solo se envía en HTTPS
+    sameSite: isProd ? 'strict' : 'lax', // Prevenir ataques CSRF
+    maxAge: 1000 * 60 * 60 * 24, // 1 días en ms
+  })
+
+  // Redirige al frontend sin el token en la URL
+  res.redirect(`${frontendUrl}/auth/callback`)
 }
 
 /**
@@ -78,5 +85,11 @@ export async function getMe(req: Request, res: Response): Promise<void> {
  * Le decimos al cliente que descarte el token desde su lado.
  */
 export function logout(_req: Request, res: Response): void {
-  res.json({ message: 'Sesión cerrada. Descarta el token en el cliente.' })
+  const isProd = process.env['NODE_ENV'] === 'production'
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: isProd ? 'strict' : 'lax',
+  })
+  res.json({ message: 'Sesión cerrada' })
 }
