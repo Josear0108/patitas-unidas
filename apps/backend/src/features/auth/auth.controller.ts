@@ -18,6 +18,9 @@ function issueToken(user: users): string {
 
   const payload: AuthUser = {
     id: user.id,
+    email: user.email,
+    name: user.name,
+    avatar_url: user.avatar_url,
     role: user.role,
     foundation_id: user.foundation_id,
   }

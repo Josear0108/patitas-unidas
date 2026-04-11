@@ -1,6 +1,6 @@
 import { Router, type IRouter } from 'express'
 import { authenticate } from '../../middlewares/auth.middleware.js'
-import { authorize } from '../../middlewares/requireRole.middleware.js'
+import { authorize } from '../../middlewares/authorize.middleware.js'
 import { getRequests, approveRequest, rejectRequest, getStats } from './admin.controller.js'
 
 const router: IRouter = Router()
