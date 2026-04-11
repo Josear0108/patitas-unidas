@@ -1,11 +1,8 @@
 import type { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
+import { AuthUserSchema, type AuthUser } from '@patitas/types'
 
-export interface AuthUser {
-  id: string
-  role: 'SUPER_ADMIN' | 'FOUNDATION_ADMIN' | 'VERIFIED_USER' | 'VISITOR'
-  foundation_id: string | null
-}
+export type { AuthUser }
 
 // Extendemos Express.User para que req.user sea AuthUser en todo el proyecto.
 // Passport declara req.user como Express.User — al extenderla evitamos conflictos de tipos.
@@ -30,8 +27,13 @@ export function authenticate(req: Request, res: Response, next: NextFunction): v
   }
 
   try {
-    const payload = jwt.verify(token, secret) as AuthUser
-    req.user = payload
+    const raw = jwt.verify(token, secret)
+    const result = AuthUserSchema.safeParse(raw)
+    if (!result.success) {
+      res.status(401).json({ error: 'Token inválido' })
+      return
+    }
+    req.user = result.data
     next()
   } catch {
     res.status(401).json({ error: 'Token inválido o expirado' })

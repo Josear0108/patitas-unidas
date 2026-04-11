@@ -11,11 +11,17 @@ import { prisma } from '../../lib/prisma.js'
  * para que el controlador pueda emitir el JWT.
  */
 export function configurePassport() {
+  const clientID = process.env['GOOGLE_CLIENT_ID']
+  const clientSecret = process.env['GOOGLE_CLIENT_SECRET']
+  if (!clientID || !clientSecret) {
+    throw new Error('GOOGLE_CLIENT_ID y GOOGLE_CLIENT_SECRET son requeridos para iniciar el servidor')
+  }
+
   passport.use(
     new GoogleStrategy(
       {
-        clientID: process.env['GOOGLE_CLIENT_ID'] ?? '',
-        clientSecret: process.env['GOOGLE_CLIENT_SECRET'] ?? '',
+        clientID,
+        clientSecret,
         callbackURL: '/api/v1/auth/google/callback',
         // Pedimos solo los scopes mínimos necesarios: perfil básico y email
         scope: ['profile', 'email'],

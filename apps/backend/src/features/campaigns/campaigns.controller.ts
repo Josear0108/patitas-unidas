@@ -120,7 +120,8 @@ export async function getCampaigns(req: Request, res: Response) {
   const { page, limit } = pageParsed.data
 
   const where = {
-    status: status ?? 'ACTIVE' as const,
+    // Siempre se muestran solo campañas ACTIVE en el catálogo público
+    status: 'ACTIVE' as const,
     ...(type ? { type } : {}),
     ...(isUrgent ? { is_urgent: true } : {}),
     ...(foundationId ? { foundation_id: foundationId } : {}),
@@ -163,7 +164,7 @@ export async function getCampaignById(req: Request, res: Response) {
 
   try {
     const campaign = await fetchCampaignWithDetails({ id: parsed.data.id })
-    if (!campaign) { res.status(404).json({ error: 'Campaña no encontrada' }); return }
+    if (!campaign || campaign.status !== 'ACTIVE') { res.status(404).json({ error: 'Campaña no encontrada' }); return }
     res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=60')
     res.json(buildCampaignDetailResponse(campaign))
   } catch (err) {
@@ -186,7 +187,7 @@ export async function getCampaignBySlug(req: Request, res: Response) {
 
   try {
     const campaign = await fetchCampaignWithDetails({ slug: parsed.data.slug })
-    if (!campaign) { res.status(404).json({ error: 'Campaña no encontrada' }); return }
+    if (!campaign || campaign.status !== 'ACTIVE') { res.status(404).json({ error: 'Campaña no encontrada' }); return }
     res.set('Cache-Control', 'public, max-age=30, stale-while-revalidate=60')
     res.json(buildCampaignDetailResponse(campaign))
   } catch (err) {

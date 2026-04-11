@@ -6,7 +6,7 @@ type Role = AuthUser['role']
 /**
  * Verifica que el usuario autenticado tenga uno de los roles indicados.
  */
-export function requireRole(...roles: Role[]) {
+export function authorize(...roles: Role[]) {
   return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {
       res.status(401).json({ error: 'No autorizado' })

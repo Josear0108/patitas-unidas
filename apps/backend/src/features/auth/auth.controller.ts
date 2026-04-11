@@ -10,7 +10,7 @@ import { prisma } from '../../lib/prisma.js'
 
 /**
  * Emite un JWT firmado con los datos mínimos necesarios para autorizar requests.
- * El token expira en 7 días — el usuario tendrá que volver a hacer login.
+ * El token expira en 1 día — el usuario tendrá que volver a hacer login.
  */
 function issueToken(user: users): string {
   const secret = process.env['JWT_SECRET']
