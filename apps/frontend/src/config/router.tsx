@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { Spinner } from '@/components/ui/spinner';
 import { AuthCallbackPage } from '@/features/auth';
+import { ProtectedRoute } from '@/components/shared';
 
 const HomePage = lazy(() =>
   import('@/features/home').then((m) => ({ default: m.HomePage }))
@@ -23,6 +24,12 @@ const CampaignListPage = lazy(() =>
 );
 const CampaignDetailPage = lazy(() =>
   import('@/features/donations').then((m) => ({ default: m.CampaignDetailPage }))
+);
+const MyRequestsPage = lazy(() =>
+  import('@/features/verification').then((m) => ({ default: m.MyRequestsPage }))
+);
+const AdminRequestsPage = lazy(() =>
+  import('@/features/admin').then((m) => ({ default: m.AdminRequestsPage }))
 );
 
 const fallback = (
@@ -84,7 +91,23 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    // Google OAuth redirige a esta ruta con ?token=JWT
+    path: '/mis-solicitudes',
+    element: s(
+      <ProtectedRoute>
+        <MyRequestsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/admin/verificaciones',
+    element: s(
+      <ProtectedRoute role="SUPER_ADMIN">
+        <AdminRequestsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    // Google OAuth redirige a esta ruta; el JWT llega como httpOnly cookie, no en la URL
     path: '/auth/callback',
     element: <AuthCallbackPage />,
   },

@@ -17,6 +17,7 @@ import {
   UserCircle,
   ClipboardList,
   Heart,
+  ShieldCheck,
 } from 'lucide-react';
 
 function GoogleIcon({ className }: { className?: string }) {
@@ -151,7 +152,7 @@ export function Navigation() {
                   </DropdownMenuItem>
 
                   <DropdownMenuItem asChild>
-                    <Link to="/solicitudes" className="flex items-center gap-2">
+                    <Link to="/mis-solicitudes" className="flex items-center gap-2">
                       <ClipboardList className="h-4 w-4" />
                       Mis solicitudes
                     </Link>
@@ -163,6 +164,18 @@ export function Navigation() {
                       Animales guardados
                     </Link>
                   </DropdownMenuItem>
+
+                  {user.role === 'SUPER_ADMIN' && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link to="/admin/verificaciones" className="flex items-center gap-2">
+                          <ShieldCheck className="h-4 w-4" />
+                          Panel Admin
+                        </Link>
+                      </DropdownMenuItem>
+                    </>
+                  )}
 
                   <DropdownMenuSeparator />
 

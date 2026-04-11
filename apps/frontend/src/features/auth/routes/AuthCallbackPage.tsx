@@ -6,15 +6,10 @@ import { Spinner } from '@/components/ui/spinner'
 /**
  * Página /auth/callback
  *
- * El backend de Google OAuth redirige aquí con ?token=JWT después de que
- * el usuario se autenticó con Google. Esta página:
- * 1. Lee el token de la URL
- * 2. Lo guarda en localStorage
- * 3. Invalida la query de auth para que useAuth() recargue el usuario
- * 4. Redirige al home
- *
- * Si no hay token en la URL, redirige al home de todos modos
- * (el usuario verá la UI como no autenticado).
+ * Google OAuth redirige aquí tras una autenticación exitosa. El JWT ya fue
+ * establecido como cookie httpOnly por el backend; no hay token en la URL.
+ * Esta página invalida la caché de /auth/me para que React vuelva a obtener
+ * el usuario autenticado y luego navega al home.
  */
 export function AuthCallbackPage() {
   const navigate = useNavigate()

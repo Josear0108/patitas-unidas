@@ -1,31 +1,19 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { apiClient } from '@/lib/api'
-import { z } from 'zod'
+import { AuthUserSchema, type AuthUser } from '@patitas/types'
 
-/**
- * Schema del usuario que retorna /auth/me.
- * Definido aquí porque no forma parte de los schemas compartidos de @patitas/types
- * (son datos del servidor de auth, no del dominio animal/fundación/campaña).
- */
-const AuthUserSchema = z.object({
-  id: z.string(),
-  email: z.string().email(),
-  name: z.string(),
-  avatar_url: z.string().nullable(),
-  role: z.enum(['SUPER_ADMIN', 'FOUNDATION_ADMIN', 'VERIFIED_USER', 'VISITOR']),
-  foundation_id: z.string().nullable(),
-})
-
-export type AuthUser = z.infer<typeof AuthUserSchema>
+export type { AuthUser }
 
 const AUTH_KEY = ['auth', 'me'] as const
 
 /**
- * Lee el JWT de localStorage, llama a /auth/me y expone el usuario.
+ * Llama a /auth/me y expone el usuario autenticado.
  *
- * - Si no hay token en localStorage → no hace ninguna petición (enabled: false).
- * - Si el token es inválido o expiró → la petición falla y el usuario queda como null.
- * - logout() borra el token y limpia el caché de TanStack Query.
+ * El estado de autenticación se determina exclusivamente llamando a /auth/me.
+ * Si la cookie httpOnly está ausente o expirada, el backend responde 401
+ * y query.data queda como null (usuario no autenticado).
+ * logout() limpia el caché de TanStack Query y espera a que el backend
+ * invalide la cookie antes de redirigir.
  */
 export function useAuth() {
   const queryClient = useQueryClient()
@@ -41,12 +29,9 @@ export function useAuth() {
     staleTime: 1000 * 60 * 10, // 10 minutos
   })
 
-  function logout() {
-    localStorage.removeItem('token')
+  async function logout() {
     queryClient.clear()
-    // Llamada fire-and-forget al backend (no bloqueamos la UI)
-    apiClient.post('/auth/logout').catch(() => {})
-    // Recarga la página para que React lea localStorage desde cero
+    try { await apiClient.post('/auth/logout') } catch { /* ignore */ }
     window.location.href = '/'
   }
 
